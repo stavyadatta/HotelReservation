@@ -4,13 +4,20 @@ import java.security.PublicKey;
 
 public abstract class Bill {
     private double totalbill;
-    // here the totoal bill will be used from the
+    // here the total bill will be used from the
+
+
+    public Bill(double totalbill) {
+        this.totalbill = totalbill;
+    }
 
     public double getTotalbill() {
+
         return totalbill;
     }
 
-    public void getTotalBill(double totalbill) {
+    public void setTotalBill(double totalbill) {
+
         this.totalbill = totalbill;
     }
 
