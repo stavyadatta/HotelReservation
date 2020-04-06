@@ -1,4 +1,4 @@
-package HRPS;
+package com.company;
 
 public class Guest {
 
@@ -12,7 +12,20 @@ public class Guest {
 	private String drivingLicense;
 	private String passportNumber;
 	private String expiryDate;
-	
+
+	public Guest(String name, int creditCardNum, String address, String country, String gender, String nationality, int phoneNumber, String drivingLicense, String passportNumber, String expiryDate) {
+		this.name = name;
+		this.creditCardNum = creditCardNum;
+		this.address = address;
+		this.country = country;
+		this.gender = gender;
+		this.nationality = nationality;
+		this.phoneNumber = phoneNumber;
+		this.drivingLicense = drivingLicense;
+		this.passportNumber = passportNumber;
+		this.expiryDate = expiryDate;
+	}
+
 	public String getName() {
 		return name;
 	}

@@ -1,7 +1,10 @@
+package com.company;
+
 public class Hotel {
     private double percentageOfRoomsOccupied;
 
     public Hotel(double percentageOfRoomsOccupied) {
+
         this.percentageOfRoomsOccupied = percentageOfRoomsOccupied;
     }
 

@@ -2,13 +2,27 @@ package com.company;
 
 import java.security.PublicKey;
 
-public abstract class Bill {
+public abstract class PaymentMethod {
     private double totalbill;
+    private boolean payment_status;
     // here the total bill will be used from the
 
 
-    public Bill(double totalbill) {
+    public PaymentMethod() {
+        this.payment_status = false;
+    }
+
+    public PaymentMethod(double totalbill) {
         this.totalbill = totalbill;
+        this.payment_status = true;
+    }
+
+    public void setPayment_status(boolean payment_status) {
+        this.payment_status = payment_status;
+    }
+
+    public boolean isPayment_status() {
+        return payment_status;
     }
 
     public double getTotalbill() {

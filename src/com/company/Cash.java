@@ -1,6 +1,6 @@
 package com.company;
 
-public class Cash extends Bill{
+public class Cash extends PaymentMethod {
     private double cash;
 
     public Cash(double cash) {

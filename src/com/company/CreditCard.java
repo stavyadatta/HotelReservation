@@ -2,7 +2,7 @@ package com.company;
 
 import java.util.Date;
 
-public class CreditCard {
+public class CreditCard extends PaymentMethod {
     private long credit_card_number;
     private Date expiry_date;
     // The name from the guest class will be used here for the name of the holder right now just using string
@@ -10,11 +10,13 @@ public class CreditCard {
     private boolean payment_status;
 
     public CreditCard(){
+        super();
         // when there is no payment info
         payment_status = false;
     }
 
     public CreditCard(long credit_card_number, Date expiry_date, String name) {
+        super();
         this.credit_card_number = credit_card_number;
         this.expiry_date = expiry_date;
         this.name = name;
