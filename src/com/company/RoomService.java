@@ -1,16 +1,20 @@
+package com.company;
+
+import com.company.Menu;
+
 import java.util.Date;
 public class RoomService {
-	private menu menu;
+	private Menu menu;
 	private Date date;
 	private double cost;
 	
-	public RoomService(menu menu,Date date,double cost){
+	public RoomService(Menu menu, Date date, double cost){
 		this.date=date;
 		this.menu=menu;
 		this.cost=cost;
 	}
 	
-	public menu getMenu() {
+	public Menu getMenu() {
 		return this.menu;
 	}
 	
@@ -22,7 +26,7 @@ public class RoomService {
 		return this.cost;
 	}
 	
-	public void setMenu(menu menu) {
+	public void setMenu(Menu menu) {
 		this.menu=menu;
 	}
 	
