@@ -4,16 +4,22 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int choice;
-        System.out.println("1. Enter a new guest's details: ");
-        System.out.println("2. Update a guest's details: ");
-        System.out.println("3. Search a guest's details: ");
-        System.out.println("4. Create a reservation");
+        int choice=-1;
 
 
-        do {
+
+        while(choice!=10){
+            System.out.println("1. Enter a new guest's details: ");
+            System.out.println("2. Update a guest's details: ");
+            System.out.println("3. Search a guest's details: ");
+            System.out.println("4. Create a reservation");
+            System.out.println("5. Create/Update/Remove room service menu items. ");
+
+
             System.out.println("Enter your choice: ");
-            choice=sc.nextInt();
+            choice = sc.nextInt();
+
+
             if(choice==10) {
                 break;
             }
@@ -33,6 +39,7 @@ public class Main {
                     break;
                 case 5:
                     System.out.println("Create/Update/Remove room service menu items.");
+                    MenuBoundary.enterMenu();
                     break;
                 case 6:
                     System.out.println("Room availability");
@@ -51,11 +58,9 @@ public class Main {
                     System.out.println("only choose between ");
 
             }
-        }while(choice!=10);
+        }
 
 
-
-
-        sc.close();
+        //sc.close();
     }
 }

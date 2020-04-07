@@ -5,12 +5,13 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Menu {
-	private static ArrayList<MenuItem> menuItems;
+	private static ArrayList<MenuItem> menuItems = new ArrayList<MenuItem>();
+
    
    public void displayMenuItems() {
 	   System.out.println("The MenuItems");
-	   for(int i=0;i<menuItems.size();i++) {
-		   System.out.println(menuItems.get(i).getName()+"  "+menuItems.get(i).getDescription()+"  "+menuItems.get(i).getPrice());
+	   for(MenuItem menuItem : menuItems) {
+	   		System.out.println(menuItem.getName()+"  "+menuItem.getDescription()+"  "+menuItem.getPrice());
 	   }
    }
 
@@ -64,6 +65,7 @@ public class Menu {
 					System.out.println("Please put valid number ");
 
 			}
+			sc.close();
 
 
 		}
