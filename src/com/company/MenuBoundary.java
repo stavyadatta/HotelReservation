@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class MenuBoundary {
     public static void enterMenu(){
-        System.out.println("What do u want from menu\n 1 for Create \n 2 for update\n 3 for remove");
+        System.out.println("What do you want from menu\n 1 for Create \n 2 for update\n 3 for remove");
         Scanner sc = new Scanner(System.in);
 
         int decision = Integer.parseInt(sc.nextLine());
