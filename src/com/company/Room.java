@@ -1,4 +1,6 @@
-package HRPS;
+package com.company;
+
+import java.util.ArrayList;
 
 public class Room {
 	
@@ -18,17 +20,50 @@ public class Room {
         CITY_VIEW, SEA_VIEW, PARK_VIEW, POOL_VIEW, MOUNTAIN_VIEW, NO_VIEW
     }
     
-    private double 	roomRate;
+
+    private double roomRate;
     private double  roomWeekendRate;
     private int roomFloor;
     private int roomNumber;
+    private String completeRoomNumber;
     private boolean wifiEnabled;
     private boolean smoking;
     private RoomType roomType;
     private BedType bedType;
     private RoomStatus status;
-    private FacingView  facing;
-    
+    private FacingView facing;
+    private ArrayList<Guest> guests;
+
+
+    //	public Room(int roomFloor, int roomNumber, boolean wifiEnabled, boolean smoking, RoomType roomType,
+//				BedType bedType, FacingView facing) {
+//
+//		this.roomFloor = roomFloor;
+//		this.roomNumber = roomNumber;
+//		this.wifiEnabled = wifiEnabled;
+//		this.smoking = smoking;
+//		this.roomType = roomType;
+//		this.bedType = bedType;
+//		this.facing = facing;
+//
+//	}
+//
+//	public Room(double roomRate, double roomWeekendRate) {
+//		this.roomRate = roomRate;
+//		this.roomWeekendRate = roomWeekendRate;
+//	}
+//
+//	public Room(ArrayList<Guest> guests) {
+//		this.guests = guests;
+//	}
+
+
+	public void getGuests() {
+		for(Guest guest: guests){
+			System.out.println("Names " + guest.getName() + "\n");
+		}
+	}
+
 	public double getRoomRate() {
 		return roomRate;
 	}
@@ -89,5 +124,10 @@ public class Room {
 	public void setFacing(FacingView facing) {
 		this.facing = facing;
 	}
+
+	public void setCompleteRoomNumber(){
+		this.completeRoomNumber = String.format("0%d-0%d", this.roomFloor, this.roomNumber);
+	}
+
 	
 }

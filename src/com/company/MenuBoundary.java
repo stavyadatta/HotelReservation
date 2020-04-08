@@ -4,7 +4,8 @@ import java.util.Scanner;
 
 public class MenuBoundary {
     public static void enterMenu(){
-        System.out.println("What do u want from menu\n 1 for Create \n 2 for update\n 3 for remove");
+        System.out.println("What do u want from menu\n 1 for Create \n 2 for update\n 3 for remove" +
+                "\n 4 for displaying menu items");
         Scanner sc = new Scanner(System.in);
 
         int decision = Integer.parseInt(sc.nextLine());
@@ -32,6 +33,11 @@ public class MenuBoundary {
                  System.out.println("What item u want to remove ");
                  String nameOfRemovalItem = sc.nextLine();
                  Menu.removeMenuItem(nameOfRemovalItem);
+
+             case 4:
+                 System.out.println("The items in the arraylist");
+                 Menu.displayMenuItems();
+
 
 
          }

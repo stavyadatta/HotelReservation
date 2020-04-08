@@ -8,10 +8,10 @@ public class Menu {
 	private static ArrayList<MenuItem> menuItems = new ArrayList<MenuItem>();
 
    
-   public void displayMenuItems() {
+   public static void displayMenuItems() {
 	   System.out.println("The MenuItems");
 	   for(MenuItem menuItem : menuItems) {
-	   		System.out.println(menuItem.getName()+"  "+menuItem.getDescription()+"  "+menuItem.getPrice());
+	   		System.out.println(menuItem.getName()+"  "+menuItem.getDescription()+"  "+menuItem.getPrice() + "\n");
 	   }
    }
 

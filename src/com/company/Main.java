@@ -11,12 +11,12 @@ public class Main {
         while(choice!=10){
             System.out.println("1. Enter a new guest's details: ");
             System.out.println("2. Update a guest's details: ");
-            System.out.println("3. Search a guest's details: ");
+            System.out.println("3. Create/Update rooms details (include setting status like ‘Under Maintenance");
             System.out.println("4. Create a reservation");
             System.out.println("5. Create/Update/Remove room service menu items. ");
 
 
-            System.out.println("Enter your choice: ");
+            System.out.print("Enter your choice: ");
             choice = sc.nextInt();
 
 
@@ -33,6 +33,7 @@ public class Main {
                     break;
                 case 3:
                     System.out.println("Create/Update rooms details (include setting status like ‘Under Maintenance");
+                    HotelBoundary.enterHotel();
                     break;
                 case 4:
                     System.out.println("Entering room service orders - list menu items for selection \n");
