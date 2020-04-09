@@ -18,6 +18,11 @@ public class RoomServiceController {
         int room_num = Integer.parseInt(sc.nextLine());
 
         Hotel.getRoom(floor*Hotel.ROOMS_ON_EACH_FLOOR + room_num).addRoomService(roomService);
-        System.out.printf("The room service has been ordered in the room %.2f ", Hotel.getRoom(floor*Hotel.ROOMS_ON_EACH_FLOOR + room_num));
+        System.out.println("Your ordered has been placed");
+
+        System.out.println("Your order is: ");
+        Hotel.getRoom(floor*Hotel.ROOMS_ON_EACH_FLOOR + room_num).printRoomServices();
     }
+
+
 }

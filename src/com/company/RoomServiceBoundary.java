@@ -34,6 +34,5 @@ public class RoomServiceBoundary {
 
         // setting up the room service object instance
         RoomServiceController.roomServiceModifier(roomService, price);
-
     }
 }

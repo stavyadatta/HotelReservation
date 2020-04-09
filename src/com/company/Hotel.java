@@ -106,4 +106,8 @@ public class Hotel {
     public static void change_weekend_price(double price, int room_num){
         rooms.get(room_num).setRoomWeekendRate(price);
     }
+
+    public static ArrayList<Room> getRooms() {
+        return rooms;
+    }
 }

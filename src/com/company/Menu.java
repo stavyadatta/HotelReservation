@@ -23,9 +23,9 @@ public class Menu {
    	num_of_times_add_new_item_called++;
    }
 
-   public static void removeMenuItem(String name){
+   public static void removeMenuItem(int id){
    	for(int i = 0; i<menuItems.size(); i++){
-   		if(name == menuItems.get(i).getName()){
+   		if(id == menuItems.get(i).getId()){
    			menuItems.remove(i);
 		}
 	}

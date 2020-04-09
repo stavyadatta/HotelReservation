@@ -31,8 +31,8 @@ public class MenuBoundary {
 
              case 3:
                  System.out.println("What item u want to remove ");
-                 String nameOfRemovalItem = sc.nextLine();
-                 Menu.removeMenuItem(nameOfRemovalItem);
+                 int idOfRemovalItem = Integer.parseInt(sc.nextLine());
+                 Menu.removeMenuItem(idOfRemovalItem);
 
              case 4:
                  System.out.println("The items in the arraylist");

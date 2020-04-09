@@ -1,5 +1,6 @@
 package com.company;
 
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class Room {
@@ -59,7 +60,8 @@ public class Room {
 //	}
 
 	public Room(){
-
+		roomServices = new ArrayList<RoomService>();
+		guests = new ArrayList<Guest>();
 	}
 
 
@@ -140,5 +142,25 @@ public class Room {
 
 	public void addRoomService(RoomService roomService) {
 		this.roomServices.add(roomService);
+	}
+
+	public double totalCostRoomServices(){
+		double price = 0.0;
+		for(RoomService roomService: this.roomServices){
+			price = price + roomService.getCost();
+		}
+		return price;
+	}
+
+	public void printRoomServices(){
+		for(RoomService roomService: this.roomServices){
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+			String time = dtf.format(roomService.getDate());
+			System.out.printf("the time is %s\n", time);
+			for(MenuItem menuItem: roomService.getItemsSelected()){
+				System.out.printf("The item description is %s and name is %s\n", menuItem.getDescription(),
+						menuItem.getName());
+			}
+		}
 	}
 }
