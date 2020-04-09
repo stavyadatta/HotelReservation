@@ -107,121 +107,174 @@ public class GuestManager {
 				+ "\n 2 Passport number \n 3 Driving license \n 4 Phone number"
 				+ "\n 5 Gender \n 6 Nationality \n 7 Country \n 8 Address"
 				+ "\n 9 Credit card number \n 10 Credit card expiry date \n Enter 0 to exit");
+		 
+		ListIterator<String> iterator = guestDetails.listIterator();
 		int decision = sc.nextInt();
 		while(decision!=11&&decision>0&&decision<11) {
 			switch(decision) {
 			case 0:
 				break;
+				
 			case 1: 
-				System.out.println("Enter guest name:");
+				System.out.println("Enter new guest name:");
 				String name = sc.nextLine();
-					 
-				ListIterator<String> iterator = guestDetails.listIterator();
+				
+				String oldName = ((Guest) guestDetails).getName();
+				System.out.println("Old guest name:" + oldName);
+			
 				while (iterator.hasNext()) {
 				      String next = iterator.next();
-				      if (next.equals(((Guest) guestDetails).getName())) {
+				      if (next.equals(oldName)) {
 				          iterator.set(name);
 				      }
 				 }
+				System.out.println("New guest name:" +name);
+				break;
+				
 			case 2:
-				System.out.println("Enter guest passport number:");
+				System.out.println("Enter new guest passport number:");
 				String passportNumber = sc.nextLine();
-					 
-				iterator = guestDetails.listIterator();
+
+				String OldPassportNumber = ((Guest) guestDetails).getName();
+				System.out.println("Old guest passport number:" + OldPassportNumber);
+						
 				while (iterator.hasNext()) {
 				      String next = iterator.next();
-				      if (next.equals(((Guest) guestDetails).getpassportNumber())) {
+				      if (next.equals(OldPassportNumber)) {
 				          iterator.set(passportNumber);
 				      }
 				 }
+				System.out.println("New guest passport number:" +passportNumber);
+				break;
+				
 			case 3:
-				System.out.println("Enter guest driving license:");
+				System.out.println("Enter new guest driving license:");
 				String drivingLicense = sc.nextLine();
-					 
-				iterator = guestDetails.listIterator();
+				
+				String OlddrivingLicense = ((Guest) guestDetails).getName();
+				System.out.println("Old guest driving license:" + OlddrivingLicense);
+				
 				while (iterator.hasNext()) {
 				      String next = iterator.next();
-				      if (next.equals(((Guest) guestDetails).getdrivingLicense())) {
+				      if (next.equals(OlddrivingLicense)) {
 				          iterator.set(drivingLicense);
 				      }
 				 }
+				System.out.println("New guest driving license:" +drivingLicense);
+				break;
+				
 			case 4: 
-				System.out.println("Enter guest phone number:");
+				System.out.println("Enter new guest phone number:");
 				String phoneNumber = sc.nextLine();
-					 
-				iterator = guestDetails.listIterator();
+				
+				String OldPhoneNumber = ((Guest) guestDetails).getName();
+				System.out.println("Old guest phone number:" + OldPhoneNumber);
+			
 				while (iterator.hasNext()) {
 				      String next = iterator.next();
-				      if (next.equals(((Guest) guestDetails).getphoneNumber())) {
+				      if (next.equals(OldPhoneNumber)) {
 				          iterator.set(phoneNumber);
 				      }
 				 }
+				System.out.println("New guest phone number:" + phoneNumber);
+				break;
+				
 			case 5:
-				System.out.println("Enter guest gender:");
+				System.out.println("Enter new guest gender:");
 				String gender = sc.nextLine();
-					 
-				iterator = guestDetails.listIterator();
+			
+				String OldGender = ((Guest) guestDetails).getName();
+				System.out.println("Old guest gender:" + OldGender);
+				
 				while (iterator.hasNext()) {
 				      String next = iterator.next();
-				      if (next.equals(((Guest) guestDetails).getGender())) {
+				      if (next.equals(OldGender)) {
 				          iterator.set(gender);
 				      }
 				 }
+				System.out.println("New guest gender:" +gender);
+				break;
+				
 			case 6:
-				System.out.println("Enter guest nationality:");
+				System.out.println("Enter new guest nationality:");
 				String nationality = sc.nextLine();
-					 
-				iterator = guestDetails.listIterator();
+				
+				String OldNationality = ((Guest) guestDetails).getName();
+				System.out.println("Old guest nationality:" + OldNationality);
+				
 				while (iterator.hasNext()) {
 				      String next = iterator.next();
-				      if (next.equals(((Guest) guestDetails).getNationality())) {
+				      if (next.equals(OldNationality)) {
 				          iterator.set(nationality);
 				      }
 				 }
+				System.out.println("New guest nationality:" +nationality);
+				break;
+				
 			case 7: 
-				System.out.println("Enter guest country:");
+				System.out.println("Enter new guest country:");
 				String country = sc.nextLine();
-					 
-				iterator = guestDetails.listIterator();
+				
+				String OldCountry = ((Guest) guestDetails).getName();
+				System.out.println("Old guest country:" + OldCountry);
+				
 				while (iterator.hasNext()) {
 				      String next = iterator.next();
-				      if (next.equals(((Guest) guestDetails).getCountry())) {
+				      if (next.equals(OldCountry)) {
 				          iterator.set(country);
 				      }
 				 }
+				System.out.println("New guest country:" +country);
+				break;
+				
 			case 8:
-				System.out.println("Enter guest address:");
+				System.out.println("Enter new guest address:");
 				String address = sc.nextLine();
-					 
-				iterator = guestDetails.listIterator();
+				
+				String OldAddress = ((Guest) guestDetails).getName();
+				System.out.println("Old guest address:" + OldAddress);
+				
 				while (iterator.hasNext()) {
 				      String next = iterator.next();
-				      if (next.equals(((Guest) guestDetails).getAddress())) {
+				      if (next.equals(OldAddress)) {
 				          iterator.set(address);
 				      }
 				 }
+				System.out.println("New guest address:" +address);
+				break;
+				
 			case 9:
-				System.out.println("Enter guest creditCardNum:");
+				System.out.println("Enter new guest creditCardNum:");
 				String creditCardNum = sc.nextLine();
-					 
-				iterator = guestDetails.listIterator();
+				
+				String OldCreditCardNum = ((Guest) guestDetails).getName();
+				System.out.println("Old guest credit card number:" + OldCreditCardNum);
+				
 				while (iterator.hasNext()) {
 				      String next = iterator.next();
-				      if (next.equals(((Guest) guestDetails).getcreditCardNum())) {
+				      if (next.equals(OldCreditCardNum)) {
 				          iterator.set(creditCardNum);
 				      }
 				 }
+				System.out.println("New guest credit card number:" +creditCardNum);
+				break;
+				
 			case 10: 
-				System.out.println("Enter guest expiryDate:");
+				System.out.println("Enter new guest expiryDate:");
 				String expiryDate = sc.nextLine();
-					 
-				iterator = guestDetails.listIterator();
+				
+				String OldExpiryDate = ((Guest) guestDetails).getName();
+				System.out.println("Old guest credit card expiry date:" + OldExpiryDate);
+				
 				while (iterator.hasNext()) {
 				      String next = iterator.next();
-				      if (next.equals(((Guest) guestDetails).getExpiryDate())) {
+				      if (next.equals(OldExpiryDate)) {
 				          iterator.set(expiryDate);
 				      }
 				 }
+				System.out.println("New guest credit card expiry date:" +expiryDate);
+				break;
+				
 			default:
 				System.out.println("Please enter a valid number.");
 				
