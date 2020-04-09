@@ -3,11 +3,11 @@ package com.company;
 import java.util.ArrayList;
 
 public class Hotel {
-    private final static int NUMBER_OF_ROOMS = 48;
+    public final static int NUMBER_OF_ROOMS = 48;
     private double percentageOfRoomsOccupied;
     private static ArrayList<Room> rooms;
-    private final static int FLOORS = 8;
-    private final static int ROOMS_ON_EACH_FLOOR = 6;
+    public final static int FLOORS = 8;
+    public final static int ROOMS_ON_EACH_FLOOR = 6;
 
     static {
         rooms = new ArrayList<Room>(NUMBER_OF_ROOMS);

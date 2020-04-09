@@ -2,44 +2,52 @@ package com.company;
 
 import com.company.Menu;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
 public class RoomService {
-	private Menu menu;
-	private Date date;
+	private LocalDateTime date;
 	private double cost;
+	private Room room;
+	private ArrayList<MenuItem> itemsSelected;
 	
-	public RoomService(Menu menu, Date date, double cost){
+	public RoomService(LocalDateTime date, double cost){
 		this.date=date;
-		this.menu=menu;
 		this.cost=cost;
 	}
-	
-	public Menu getMenu() {
-		return this.menu;
+
+	public RoomService(){
+		itemsSelected = new ArrayList<MenuItem>();
 	}
 	
-	public Date getDate() {
+
+
+	public LocalDateTime getDate() {
 		return this.date;
 	}
 	
 	public double getCost() {
 		return this.cost;
 	}
+
 	
-	public void setMenu(Menu menu) {
-		this.menu=menu;
-	}
-	
-	public void setDate(Date date) {
+	public void setDate(LocalDateTime date) {
 		this.date=date;
 	}
 	
 	public void setCost(double cost) {
 		this.cost=cost;
 	}
-	
-	
-	
-	
-	 
+
+	public ArrayList<MenuItem> getItemsSelected() {
+		return itemsSelected;
+	}
+
+	public Room getRoom() {
+		return room;
+	}
+
+	public void setRoom(Room room) {
+		this.room = room;
+	}
 }

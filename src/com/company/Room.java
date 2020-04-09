@@ -33,6 +33,7 @@ public class Room {
     private RoomStatus status;
     private FacingView facing;
     private ArrayList<Guest> guests;
+    private ArrayList<RoomService> roomServices;
 
 
     //	public Room(int roomFloor, int roomNumber, boolean wifiEnabled, boolean smoking, RoomType roomType,
@@ -56,6 +57,10 @@ public class Room {
 //	public Room(ArrayList<Guest> guests) {
 //		this.guests = guests;
 //	}
+
+	public Room(){
+
+	}
 
 
 	public void getGuests() {
@@ -129,5 +134,11 @@ public class Room {
 		this.completeRoomNumber = String.format("0%d-0%d", this.roomFloor, this.roomNumber);
 	}
 
-	
+	public ArrayList<RoomService> getRoomServices() {
+		return this.roomServices;
+	}
+
+	public void addRoomService(RoomService roomService) {
+		this.roomServices.add(roomService);
+	}
 }

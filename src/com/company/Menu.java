@@ -6,18 +6,21 @@ import java.util.Scanner;
 
 public class Menu {
 	private static ArrayList<MenuItem> menuItems = new ArrayList<MenuItem>();
+	private static int num_of_times_add_new_item_called = 0;
 
    
    public static void displayMenuItems() {
 	   System.out.println("The MenuItems");
 	   for(MenuItem menuItem : menuItems) {
-	   		System.out.println(menuItem.getName()+"  "+menuItem.getDescription()+"  "+menuItem.getPrice() + "\n");
+	   		System.out.println(menuItem.getName()+"  "+menuItem.getDescription()+"  "+menuItem.getPrice() + " id: " +
+					menuItem.getId());
 	   }
    }
 
    public static void newMenuItem(String name, String description, double price){
-   	MenuItem menuItem = new MenuItem(name, description, price);
+   	MenuItem menuItem = new MenuItem(name, description, price, num_of_times_add_new_item_called);
    	menuItems.add(menuItem);
+   	num_of_times_add_new_item_called++;
    }
 
    public static void removeMenuItem(String name){
@@ -31,14 +34,14 @@ public class Menu {
    public static void updateMenuItem(){
 	   Scanner sc = new Scanner(System.in);
 	   System.out.println("the menu item to be updated here ");
-	   System.out.println("Write the name of menu Item to be updated ");
-	   String name = sc.nextLine();
+	   System.out.println("Write the id of menu Item to be updated ");
+	   int id = Integer.parseInt(sc.nextLine());
 
 	   for(int i = 0; i < menuItems.size(); i++){
-	   	if(name == menuItems.get(i).getName()){
+	   	if(id == menuItems.get(i).getId()){
 	   		System.out.println("The item is found, what do u want to change about the item\n 1 for name " +
 					"2 for description and 3 for price ");
-	   		int decision = sc.nextInt();
+	   		int decision = Integer.parseInt(sc.nextLine());
 	   		switch (decision){
 				case 1:
 					System.out.println("The old name was " + menuItems.get(i).getName());
@@ -52,6 +55,7 @@ public class Menu {
 					System.out.print("\nNew description: ");
 					String newDescription = sc.nextLine();
 					menuItems.get(i).setDescription(newDescription);
+					System.out.println("Description Changed");
 					break;
 
 				case 3:
@@ -65,12 +69,18 @@ public class Menu {
 					System.out.println("Please put valid number ");
 
 			}
-			sc.close();
+			//sc.close();
 
 
+		} else{
+	   		System.out.println("Item not found");
 		}
 	   }
 
 
    }
+
+	public static ArrayList<MenuItem> getMenuItems() {
+		return menuItems;
+	}
 }

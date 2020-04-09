@@ -12,12 +12,12 @@ public class Main {
             System.out.println("1. Enter a new guest's details: ");
             System.out.println("2. Update a guest's details: ");
             System.out.println("3. Create/Update rooms details (include setting status like ‘Under Maintenance");
-            System.out.println("4. Create a reservation");
+            System.out.println("4. Create a order for a room service");
             System.out.println("5. Create/Update/Remove room service menu items. ");
 
 
             System.out.print("Enter your choice: ");
-            choice = sc.nextInt();
+            choice = Integer.parseInt(sc.nextLine());
 
 
             if(choice==10) {
@@ -37,6 +37,7 @@ public class Main {
                     break;
                 case 4:
                     System.out.println("Entering room service orders - list menu items for selection \n");
+                    RoomServiceBoundary.initiateRoomService();
                     break;
                 case 5:
                     System.out.println("Create/Update/Remove room service menu items.");

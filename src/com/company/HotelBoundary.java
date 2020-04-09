@@ -26,10 +26,10 @@ public class HotelBoundary {
 
         switch (decision){
             case 1:
-               HotelController.changeStatus(floorNum + roomNum);
+               HotelController.changeStatus(floorNum*Hotel.ROOMS_ON_EACH_FLOOR + roomNum);
                break;
             case 2:
-                System.out.print("WHat cost do u want: ");
+                System.out.print("What cost do u want: ");
                 double price = Double.parseDouble(sc.nextLine());
                 HotelController.changing_room_cost(price, roomNum);
             case 4:
