@@ -7,6 +7,7 @@ public class Reservation {
     private long reservationNumber;
     private ArrayList<Guest> guests;
     private  ArrayList<Room> rooms;
+    private PaymentMethod paymentMethod;
    // private enum reservationStatus;
 
     public Reservation(){
@@ -52,6 +53,14 @@ public class Reservation {
 
         return total_room_cost + total_roomService_cost;
 
+    }
+
+    public PaymentMethod getPaymentMethod() {
+        return paymentMethod;
+    }
+
+    public void setPaymentMethod(PaymentMethod paymentMethod) {
+        this.paymentMethod = paymentMethod;
     }
 }
 

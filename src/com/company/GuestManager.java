@@ -9,8 +9,8 @@ import java.util.ListIterator;
 
 public class GuestManager {
 	
-	static LinkedHashMap<Integer, List<String>> NoOfGuest = new LinkedHashMap<Integer, List<String>>();
-	static ArrayList<String> guestDetails = new ArrayList<String>();
+	public static LinkedHashMap<Integer, Guest> NoOfGuest = new LinkedHashMap<Integer, Guest>();
+	public static ArrayList<Guest> guestDetails = new ArrayList<Guest>();
 	
 	static int key=1;
 	
@@ -28,15 +28,15 @@ public class GuestManager {
 		String drivingLicense = null;
 		String passportNumber = null;
 		String expiryDate = null;
-		Guest g = new Guest(name,creditCardNum,address,country, gender,nationality,
-				phoneNumber,drivingLicense,passportNumber,expiryDate);
+		Guest g = new Guest(name,address,country, gender,nationality,
+				phoneNumber,drivingLicense,passportNumber);
 		
 		Scanner sc = new Scanner(System.in);
 		
 		System.out.println("Enter guest name:");
 		name = sc.nextLine();
 		g.setName(name);
-		guestDetails.add(name);
+		//guestDetails.add(name);
 		
 		System.out.println("Enter guest Id: \n 1 Passport Number \n 2 Driving License");
 		int decision = Integer.parseInt(sc.nextLine());
@@ -46,13 +46,13 @@ public class GuestManager {
 				System.out.println("Enter guest passport number:");
 				passportNumber = sc.nextLine();
 				g.setpassportNumber(passportNumber);
-				guestDetails.add(passportNumber);
+				//guestDetails.add(passportNumber);
 				break;
 			case 2:
 				System.out.println("Enter guest driving license:");
 				drivingLicense = sc.nextLine();
 				g.setdrivingLicense(drivingLicense);
-				guestDetails.add(drivingLicense);
+				//guestDetails.add(drivingLicense);
 				break;
 			default:
 				System.out.println("Please enter a valid number.");
@@ -62,38 +62,30 @@ public class GuestManager {
 		System.out.println("Enter guest phone number:");
 		phoneNumber = sc.nextLine();
 		g.setphoneNumber(phoneNumber);
-		guestDetails.add(phoneNumber);
+		//guestDetails.add(phoneNumber);
 		
 		System.out.println("Enter guest gender:");
 		gender = sc.nextLine();
 		g.setGender(gender);
-		guestDetails.add(gender);
+		//guestDetails.add(gender);
 		
 		System.out.println("Enter guest nationality:");
 		nationality = sc.nextLine();
 		g.setNationality(nationality);
-		guestDetails.add(nationality);
+		//guestDetails.add(nationality);
 		
 		System.out.println("Enter guest country:");
 		country = sc.nextLine();
 		g.setCountry(country);
-		guestDetails.add(country);
+		//guestDetails.add(country);
 		
 		System.out.println("Enter guest address:");
 		address = sc.nextLine();
 		g.setAddress(address);
-		guestDetails.add(address);
+		//guestDetails.add(address);
 		
-		System.out.println("Enter guest creditCardNum:");
-		creditCardNum = sc.nextLine();
-		g.setcreditCardNum(creditCardNum);
-		guestDetails.add(creditCardNum);
-		
-		System.out.println("Enter guest expiryDate:");
-		expiryDate = sc.nextLine();
-		g.setExpiryDate(expiryDate);
-		guestDetails.add(expiryDate);
-		
+
+		guestDetails.add(g);
 		NoOfGuest.put(key, guestDetails);
 		
 		key++;	
@@ -109,7 +101,7 @@ public class GuestManager {
 				+ "\n 9 Credit card number \n 10 Credit card expiry date \n Enter 0 to exit");
 		 
 		ListIterator<String> iterator = guestDetails.listIterator();
-		int decision = sc.nextInt();
+		int decision = Integer.parseInt(sc.nextLine());
 		while(decision!=11&&decision>0&&decision<11) {
 			switch(decision) {
 			case 0:
@@ -333,4 +325,11 @@ public class GuestManager {
 		sc.close();
 	}
 
+	public static ArrayList<Guest> getGuestDetails() {
+		return guestDetails;
+	}
+
+	public static void setGuestDetails(ArrayList<Guest> guestDetails) {
+		GuestManager.guestDetails = guestDetails;
+	}
 }

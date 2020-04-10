@@ -33,6 +33,13 @@ public class RoomServiceBoundary {
         } while(id!=-1);
 
         // setting up the room service object instance
-        RoomServiceController.roomServiceModifier(roomService, price);
+        System.out.println("Your Room number Please");
+        System.out.print("Floor: ");
+        int floor = Integer.parseInt(sc.nextLine());
+        System.out.print("Room number: ");
+        int room_num = Integer.parseInt(sc.nextLine());
+
+
+        RoomServiceController.roomServiceModifier(roomService, price, floor, room_num);
     }
 }
