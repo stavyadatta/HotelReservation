@@ -38,4 +38,9 @@ public class HotelBoundary {
 
         }
     }
+
+    public static void choosingRoom(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("What type of bed do u want");
+    }
 }
