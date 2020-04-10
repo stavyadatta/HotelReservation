@@ -3,19 +3,16 @@ package com.company;
 public class Guest {
 
 	private String name;
-	private int creditCardNum;
 	private String address;
 	private String country;
 	private String gender;
 	private String nationality;
-	private int phoneNumber;
+	private String phoneNumber;
 	private String drivingLicense;
 	private String passportNumber;
-	private String expiryDate;
 
-	public Guest(String name, int creditCardNum, String address, String country, String gender, String nationality, int phoneNumber, String drivingLicense, String passportNumber, String expiryDate) {
+	public Guest(String name, String address, String country, String gender, String nationality, String phoneNumber, String drivingLicense, String passportNumber) {
 		this.name = name;
-		this.creditCardNum = creditCardNum;
 		this.address = address;
 		this.country = country;
 		this.gender = gender;
@@ -23,7 +20,6 @@ public class Guest {
 		this.phoneNumber = phoneNumber;
 		this.drivingLicense = drivingLicense;
 		this.passportNumber = passportNumber;
-		this.expiryDate = expiryDate;
 	}
 
 	public String getName() {
@@ -34,14 +30,14 @@ public class Guest {
 		this.name=name;
 	}
 	
-	public int getcreditCardNum() {
-		return creditCardNum;
-	}
+//	public String getcreditCardNum() {
+//		return creditCardNum;
+//	}
 	
-	public void setcreditCardNum(int creditCardNum ) {
-		this.creditCardNum=creditCardNum;
-	}
-		
+//	public void setcreditCardNum(String creditCardNum ) {
+//		this.creditCardNum=creditCardNum;
+//	}
+//
 	public String getAddress() {
 		return address;
 	}
@@ -74,11 +70,11 @@ public class Guest {
 		this.nationality=nationality;
 	}
 	
-	public int getphoneNumber() {
+	public String getphoneNumber() {
 		return phoneNumber;
 	}
 	
-	public void setphoneNumber(int phoneNumber) {
+	public void setphoneNumber(String phoneNumber) {
 		this.phoneNumber=phoneNumber;
 	}
 	
@@ -98,13 +94,13 @@ public class Guest {
 		this.passportNumber=passportNumber;
 	}
 		
-	public void setExpiryDate(String expiryDate) {
-		this.expiryDate=expiryDate;
-	}	
-	
-	public String getExpiryDate() {
-		return expiryDate;
-	}
-	
+//	public void setExpiryDate(String expiryDate) {
+//		this.expiryDate=expiryDate;
+//	}
+//
+//	public String getExpiryDate() {
+//		return expiryDate;
+//	}
+
 
 }

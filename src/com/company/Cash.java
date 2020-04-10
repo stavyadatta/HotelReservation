@@ -14,7 +14,7 @@ public class Cash extends PaymentMethod {
     }
 
     public double change(double given_money){
-        return given_money - this.cash;
+        return given_money - getTotalbill();
     }
 
     public double getCash() {

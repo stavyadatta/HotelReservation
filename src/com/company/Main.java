@@ -11,13 +11,14 @@ public class Main {
         while(choice!=10){
             System.out.println("1. Enter a new guest's details: ");
             System.out.println("2. Update a guest's details: ");
-            System.out.println("3. Search a guest's details: ");
-            System.out.println("4. Create a reservation");
+            System.out.println("3. Create/Update rooms details (include setting status like ‘Under Maintenance");
+            System.out.println("4. Create a order for a room service");
             System.out.println("5. Create/Update/Remove room service menu items. ");
+            System.out.println("8. Check out");
 
 
-            System.out.println("Enter your choice: ");
-            choice = sc.nextInt();
+            System.out.print("Enter your choice: ");
+            choice = Integer.parseInt(sc.nextLine());
 
 
             if(choice==10) {
@@ -27,15 +28,18 @@ public class Main {
                 case 1:
                     long num = 1234567890;
                     System.out.println("Create/Update/Search guests detail (Search by name using keyword/s) ");
+                    GuestBoundary.enterGuest();
                     break;
                 case 2:
                     System.out.println("Create/Update/Remove/Print reservation");
                     break;
                 case 3:
                     System.out.println("Create/Update rooms details (include setting status like ‘Under Maintenance");
+                    HotelBoundary.enterHotel();
                     break;
                 case 4:
                     System.out.println("Entering room service orders - list menu items for selection \n");
+                    RoomServiceBoundary.initiateRoomService();
                     break;
                 case 5:
                     System.out.println("Create/Update/Remove room service menu items.");
@@ -61,6 +65,6 @@ public class Main {
         }
 
 
-        //sc.close();
+        sc.close();
     }
 }
