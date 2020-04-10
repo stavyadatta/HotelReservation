@@ -14,6 +14,7 @@ public class Main {
             System.out.println("3. Create/Update rooms details (include setting status like ‘Under Maintenance");
             System.out.println("4. Create a order for a room service");
             System.out.println("5. Create/Update/Remove room service menu items. ");
+            System.out.println("8. Check out");
 
 
             System.out.print("Enter your choice: ");
@@ -27,6 +28,7 @@ public class Main {
                 case 1:
                     long num = 1234567890;
                     System.out.println("Create/Update/Search guests detail (Search by name using keyword/s) ");
+                    GuestBoundary.enterGuest();
                     break;
                 case 2:
                     System.out.println("Create/Update/Remove/Print reservation");

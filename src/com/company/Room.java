@@ -36,29 +36,6 @@ public class Room {
     private ArrayList<Guest> guests;
     private ArrayList<RoomService> roomServices;
 
-
-    //	public Room(int roomFloor, int roomNumber, boolean wifiEnabled, boolean smoking, RoomType roomType,
-//				BedType bedType, FacingView facing) {
-//
-//		this.roomFloor = roomFloor;
-//		this.roomNumber = roomNumber;
-//		this.wifiEnabled = wifiEnabled;
-//		this.smoking = smoking;
-//		this.roomType = roomType;
-//		this.bedType = bedType;
-//		this.facing = facing;
-//
-//	}
-//
-//	public Room(double roomRate, double roomWeekendRate) {
-//		this.roomRate = roomRate;
-//		this.roomWeekendRate = roomWeekendRate;
-//	}
-//
-//	public Room(ArrayList<Guest> guests) {
-//		this.guests = guests;
-//	}
-
 	public Room(){
 		roomServices = new ArrayList<RoomService>();
 		guests = new ArrayList<Guest>();

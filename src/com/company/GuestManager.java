@@ -10,7 +10,7 @@ import java.util.ListIterator;
 public class GuestManager {
 	
 	static LinkedHashMap<Integer, List<String>> NoOfGuest = new LinkedHashMap<Integer, List<String>>();
-	static List<String> guestDetails = new ArrayList<String>();
+	static ArrayList<String> guestDetails = new ArrayList<String>();
 	
 	static int key=1;
 	
@@ -39,7 +39,7 @@ public class GuestManager {
 		guestDetails.add(name);
 		
 		System.out.println("Enter guest Id: \n 1 Passport Number \n 2 Driving License");
-		int decision = sc.nextInt();
+		int decision = Integer.parseInt(sc.nextLine());
 		if(decision<=2&&decision>0) {
 			switch(decision) {
 			case 1:
@@ -119,7 +119,7 @@ public class GuestManager {
 				System.out.println("Enter new guest name:");
 				String name = sc.nextLine();
 				
-				String oldName = ((Guest) guestDetails).getName();
+				String oldName = iterator.getName();
 				System.out.println("Old guest name:" + oldName);
 			
 				while (iterator.hasNext()) {

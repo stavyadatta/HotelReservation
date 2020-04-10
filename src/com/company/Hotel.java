@@ -24,6 +24,7 @@ public class Hotel {
                         current_room.setFacing(Room.FacingView.NO_VIEW);
                         current_room.setRoomType(Room.RoomType.SINGLE);
                         current_room.setCompleteRoomNumber();
+                        current_room.setRoomRate(120.23);
                         rooms.add(current_room);
                         break;
 
@@ -34,6 +35,7 @@ public class Hotel {
                         current_room.setFacing(Room.FacingView.POOL_VIEW);
                         current_room.setRoomType(Room.RoomType.SINGLE);
                         current_room.setCompleteRoomNumber();
+                        current_room.setRoomRate(142.34);
                         rooms.add(current_room);
                         break;
 
@@ -44,6 +46,7 @@ public class Hotel {
                         current_room.setFacing(Room.FacingView.POOL_VIEW);
                         current_room.setRoomType(Room.RoomType.DOUBLE);
                         current_room.setCompleteRoomNumber();
+                        current_room.setRoomRate(1300.23);
                         rooms.add(current_room);
                         break;
 
@@ -54,6 +57,7 @@ public class Hotel {
                         current_room.setFacing(Room.FacingView.PARK_VIEW);
                         current_room.setRoomType(Room.RoomType.DELUXE);
                         current_room.setCompleteRoomNumber();
+                        current_room.setRoomRate(3420.23);
                         rooms.add(current_room);
                         break;
 
@@ -64,6 +68,7 @@ public class Hotel {
                         current_room.setFacing(Room.FacingView.SEA_VIEW);
                         current_room.setRoomType(Room.RoomType.DELUXE);
                         current_room.setCompleteRoomNumber();
+                        current_room.setRoomRate(1450.23);
                         rooms.add(current_room);
                         break;
                 }

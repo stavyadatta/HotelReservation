@@ -31,7 +31,6 @@ public class GuestBoundary {
 	            default:
 	            	System.out.println("Enter a valid number");
 	         }
-	         sc.close();
          }
 }
 

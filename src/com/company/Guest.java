@@ -3,17 +3,17 @@ package com.company;
 public class Guest {
 
 	private String name;
-	private int creditCardNum;
+	private String creditCardNum;
 	private String address;
 	private String country;
 	private String gender;
 	private String nationality;
-	private int phoneNumber;
+	private String phoneNumber;
 	private String drivingLicense;
 	private String passportNumber;
 	private String expiryDate;
 
-	public Guest(String name, int creditCardNum, String address, String country, String gender, String nationality, int phoneNumber, String drivingLicense, String passportNumber, String expiryDate) {
+	public Guest(String name, String creditCardNum, String address, String country, String gender, String nationality, String phoneNumber, String drivingLicense, String passportNumber, String expiryDate) {
 		this.name = name;
 		this.creditCardNum = creditCardNum;
 		this.address = address;
@@ -34,11 +34,11 @@ public class Guest {
 		this.name=name;
 	}
 	
-	public int getcreditCardNum() {
+	public String getcreditCardNum() {
 		return creditCardNum;
 	}
 	
-	public void setcreditCardNum(int creditCardNum ) {
+	public void setcreditCardNum(String creditCardNum ) {
 		this.creditCardNum=creditCardNum;
 	}
 		
@@ -74,11 +74,11 @@ public class Guest {
 		this.nationality=nationality;
 	}
 	
-	public int getphoneNumber() {
+	public String getphoneNumber() {
 		return phoneNumber;
 	}
 	
-	public void setphoneNumber(int phoneNumber) {
+	public void setphoneNumber(String phoneNumber) {
 		this.phoneNumber=phoneNumber;
 	}
 	
