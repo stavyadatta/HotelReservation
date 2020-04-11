@@ -161,7 +161,6 @@ public class GuestManager {
 			default:
 				System.out.println("Please enter a valid number.");
 				
-			decision = sc.nextInt();
 		}
 		}
 	}
