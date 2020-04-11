@@ -12,19 +12,19 @@ public class GuestBoundary {
 	        int decision = Integer.parseInt(sc.nextLine());
 	         switch (decision){
 	             case 1:
-	            	 Guest guest = GuestManager.CreateGuest();
+	            	 GuestManager.CreateGuest();
 	                 break;
 	
 	             case 2:
-	                 //GuestManager.UpdateGuest();
+	                 GuestManager.UpdateGuest();
 	                 break;
 	
 	             case 3:
-	            	// GuestManager.SearchGuest();
+	            	 GuestManager.SearchGuest();
 	            	 break;
 	
 	             case 4:
-	            	 //GuestManager.RemoveGuest();
+	            	 GuestManager.RemoveGuest();
 	            	 break;
 	             case 5:
 	            	 break;
