@@ -30,7 +30,7 @@ public class ReservationBoundary {
                 case 1:
                     System.out.println("Payment via card");
                     CreditCard creditCard = CreditCardBoundary.enterCreditCardDetails();
-                    reservation.setPaymentMethod(creditCard);
+                    //reservation.setPaymentMethod(creditCard);
                     guest.setPaymentMethod(creditCard);
                     break;
                 case 2:
