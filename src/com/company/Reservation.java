@@ -1,13 +1,37 @@
 package com.company;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Reservation {
     private int reservationNumber;
     private ArrayList<Guest> guests;
     private  ArrayList<Room> rooms;
     private PaymentMethod paymentMethod;
-   // private enum reservationStatus;
+
+    private enum reservationStatus {
+        confirmed,
+        inWaitlist,
+        checkedIn,
+        expired;
+
+        public String currentStatus;
+
+        // getter method
+        public String getCurrentStatus()
+        {
+            return this.currentStatus;
+        }
+
+        // enum constructor - cannot be public or protected
+        private reservationStatus(String currentStatus)
+        {
+            this.currentStatus = currentStatus;
+        }
+
+        }
+
+
 
     public Reservation(){
         guests = new ArrayList<Guest>();
@@ -48,6 +72,8 @@ public class Reservation {
 
     }
 
+
+    }
     public PaymentMethod getPaymentMethod() {
         return paymentMethod;
     }
