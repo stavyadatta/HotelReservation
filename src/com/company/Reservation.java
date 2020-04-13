@@ -1,36 +1,28 @@
 package com.company;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Reservation {
     private int reservationNumber;
     private Guest guest;
     private  ArrayList<Room> rooms;
-    private PaymentMethod paymentMethod;
    // private enum reservationStatus;
     private int numberOfGuestStaying;
+    private Date fromDate;
+    private Date toDate;
 
-//    private enum reservationStatus {
-//        confirmed,
-//        inWaitlist,
-//        checkedIn,
-//        expired;
-//
-//        public String currentStatus;
-//
-//        // getter method
-//        public String getCurrentStatus()
-//        {
-//            return this.currentStatus;
-//        }
-//
-//        // enum constructor - cannot be public or protected
-//        private reservationStatus(String currentStatus)
-//        {
-//            this.currentStatus = currentStatus;
-//        }
-//
-//    }
+
+    public enum ReservationStatus {
+        CONFIRMED,
+        WAITLIST,
+        CHECKEDIN,
+        EXPIRED
+
+    }
+
+    private ReservationStatus reservationStatus;
+
 
     public Reservation(){
         rooms = new ArrayList<Room>();
@@ -59,6 +51,14 @@ public class Reservation {
         return rooms;
     }
 
+    public ReservationStatus getReservationStatus() {
+        return reservationStatus;
+    }
+
+    public void setReservationStatus(ReservationStatus reservationStatus) {
+        this.reservationStatus = reservationStatus;
+    }
+
     public double totalReservationCost() {
         // finding the total room cost of the guest
         double price = 0;
@@ -76,12 +76,21 @@ public class Reservation {
         this.numberOfGuestStaying = numberOfGuestStaying;
     }
 
-    public PaymentMethod getPaymentMethod() {
-        return paymentMethod;
+
+    public Date getFromDate() {
+        return fromDate;
     }
 
-    public void setPaymentMethod(PaymentMethod paymentMethod) {
-        this.paymentMethod = paymentMethod;
+    public void setFromDate(Date fromDate) {
+        this.fromDate = fromDate;
+    }
+
+    public Date getToDate() {
+        return toDate;
+    }
+
+    public void setToDate(Date toDate) {
+        this.toDate = toDate;
     }
 }
 

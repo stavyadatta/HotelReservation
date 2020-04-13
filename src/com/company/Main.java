@@ -9,7 +9,7 @@ public class Main {
 
 
 
-        while(choice!=10){
+        while(choice!=100){
             System.out.println("1. Enter a new guest's details: ");
             System.out.println("2. Update a guest's details: ");
             System.out.println("3. Create/Update rooms details (include setting status like ‘Under Maintenance");
@@ -23,7 +23,7 @@ public class Main {
             choice = Integer.parseInt(sc.nextLine());
 
 
-            if(choice==10) {
+            if(choice==100) {
                 break;
             }
             switch(choice) {
@@ -50,7 +50,7 @@ public class Main {
                     System.out.println("Room availability");
                     break;
                 case 7:
-                    System.out.println("Room Check-in (for walk-in or reservation)");
+                    System.out.println("Room reserving (for walk-in or reservation)");
                     ReservationBoundary.reserving();
                     break;
                 case 8:
@@ -61,6 +61,9 @@ public class Main {
                 case 9:
                     System.out.println("Print Room Status statistic report by ");
                     break;
+                case 10:
+                    System.out.println("for check in");
+                    ReservationBoundary.checkIn();
                 default:
                     System.out.println("only choose between ");
 

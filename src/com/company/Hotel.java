@@ -8,8 +8,10 @@ public class Hotel {
     private static ArrayList<Room> rooms;
     public final static int FLOORS = 8;
     public final static int ROOMS_ON_EACH_FLOOR = 6;
+    private static int running;
 
     static {
+        running = 0;
         rooms = new ArrayList<Room>();
         // creating the whole hotel
         for(int i = 0; i<FLOORS; i++){
@@ -36,6 +38,17 @@ public class Hotel {
                         current_room.setRoomType(Room.RoomType.SINGLE);
                         current_room.setCompleteRoomNumber();
                         current_room.setRoomRate(142.34);
+                        rooms.add(current_room);
+                        break;
+
+                    case 2:
+                        current_room.setRoomFloor(i);
+                        current_room.setRoomNumber(j);
+                        current_room.setBedType(Room.BedType.DOUBLE_BED);
+                        current_room.setFacing(Room.FacingView.PARK_VIEW);
+                        current_room.setRoomType(Room.RoomType.DOUBLE);
+                        current_room.setCompleteRoomNumber();
+                        current_room.setRoomRate(163.34);
                         rooms.add(current_room);
                         break;
 
@@ -94,6 +107,7 @@ public class Hotel {
                         rooms.add(current_room);
                         break;
                 }
+                running++;
             }
 
         }
@@ -118,6 +132,7 @@ public class Hotel {
                     room.getRoomNumber(), room.getStatus(), room.getCompleteRoomNumber(), room.getRoomType(), room.getBedType(),
                     room.getFacing());
         }
+        System.out.println("This ran " + rooms.size() + " times");
     }
 
     public void setPercentageOfRoomsOccupied(double percentageOfRoomsOccupied) {

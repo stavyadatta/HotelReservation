@@ -17,7 +17,7 @@ public class GuestManager {
 		String country = null;
 		String gender = null;
 		String nationality = null;
-		int phoneNumber = 0;
+		long phoneNumber = 0;
 		String drivingLicense = null;
 		String passportNumber = null;
 		int GuestIdNum=guestIdNumber;
@@ -50,7 +50,7 @@ public class GuestManager {
 		}
 		
 		System.out.println("Enter guest phone number:");
-		phoneNumber = sc.nextInt();
+		phoneNumber = Long.parseLong(sc.nextLine());
 		g.setphoneNumber(phoneNumber);
 		sc.nextLine();
 		

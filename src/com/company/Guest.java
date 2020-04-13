@@ -7,13 +7,13 @@ public class Guest {
 	private String country;
 	private String gender;
 	private String nationality;
-	private int phoneNumber;
+	private long phoneNumber;
 	private String drivingLicense;
 	private String passportNumber;
 	private int GuestIdNum;
 	private PaymentMethod paymentMethod;
 
-	public Guest(int GuestIdNum,String name, String address, String country, String gender, String nationality, int phoneNumber, String drivingLicense, String passportNumber) {
+	public Guest(int GuestIdNum,String name, String address, String country, String gender, String nationality, long phoneNumber, String drivingLicense, String passportNumber) {
 		this.name = name;
 		this.address = address;
 		this.country = country;
@@ -73,11 +73,11 @@ public class Guest {
 		this.nationality=nationality;
 	}
 	
-	public int getphoneNumber() {
+	public long getphoneNumber() {
 		return phoneNumber;
 	}
 	
-	public void setphoneNumber(int phoneNumber) {
+	public void setphoneNumber(long phoneNumber) {
 		this.phoneNumber=phoneNumber;
 	}
 	

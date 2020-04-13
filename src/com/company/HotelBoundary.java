@@ -7,13 +7,13 @@ public class HotelBoundary {
         Scanner sc = new Scanner(System.in);
         System.out.print("What room number do you want\nFloor:  ");
         int floorNum = Integer.parseInt(sc.nextLine());
-        while(floorNum < 0 || floorNum > 5){
+        while(floorNum < 0 || floorNum >= Hotel.FLOORS){
             System.out.println("Choose again\nFloor: ");
             floorNum = Integer.parseInt(sc.nextLine());
         }
         System.out.print("\nroom number: ");
         int roomNum = Integer.parseInt(sc.nextLine());
-        while(roomNum < 0 || roomNum > 5){
+        while(roomNum < 0 || roomNum >= Hotel.ROOMS_ON_EACH_FLOOR){
             System.out.println("Choose again\nroom number: ");
             roomNum = Integer.parseInt(sc.nextLine());
         }

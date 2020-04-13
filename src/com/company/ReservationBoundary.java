@@ -1,6 +1,10 @@
 package com.company;
 
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 
 public class ReservationBoundary {
@@ -17,10 +21,19 @@ public class ReservationBoundary {
         Reservation reservation = new Reservation();
 
         System.out.println("Names of the guest u wanna add \n-1 when all the guests have been added");
-            Guest guest = GuestManager.CreateGuest();
+        Guest guest = GuestManager.CreateGuest();
 
-            System.out.print("Number of guests staying: ");
-            int numberOfGuestStaying = Integer.parseInt(sc.nextLine());
+        System.out.print("Number of guests staying: ");
+        int numberOfGuestStaying = Integer.parseInt(sc.nextLine());
+
+        // setting the dates
+        System.out.println("Please write from date in dd/MM/yyyy format");
+        String dateFromInput = sc.nextLine();
+        Date fromDate = new SimpleDateFormat("dd/MM/yyyy").parse(dateFromInput);
+
+        System.out.println("Please write your to date in dd/MM/yyyy format  ");
+        String dateToInput = sc.nextLine();
+        Date toDate = new SimpleDateFormat("dd/MM/yyyy").parse(dateToInput);
 
         int method = -1;
         do {
@@ -30,21 +43,17 @@ public class ReservationBoundary {
                 case 1:
                     System.out.println("Payment via card");
                     CreditCard creditCard = CreditCardBoundary.enterCreditCardDetails();
-                    //reservation.setPaymentMethod(creditCard);
                     guest.setPaymentMethod(creditCard);
                     break;
                 case 2:
                     System.out.println("Payment via cash");
                     Cash cash = new Cash();
-                    reservation.setPaymentMethod(cash);
                     guest.setPaymentMethod(cash);
                     break;
                 default:
                     System.out.println("Please select a number between 1 and 2");
             }
         } while(method < 1 || method > 2);
-
-
 
         // finding what rooms does the user want
         int moreRooms = -2;
@@ -82,7 +91,8 @@ public class ReservationBoundary {
 
         System.out.println("Your reservation number is " + numberOfCheckIns);
         // This is to add the reservation along with the info to the reservation arraylist
-        ReservationController.settingUpReservationObject(numberOfGuestStaying, guest, foundRoom, numberOfCheckIns);
+        ReservationController.settingUpReservationObject(numberOfGuestStaying, guest, foundRoom, numberOfCheckIns, toDate,
+                fromDate);
         numberOfCheckIns++;
 
     }
@@ -90,7 +100,28 @@ public class ReservationBoundary {
     public static void checkIn(){
         Scanner sc = new Scanner(System.in);
         System.out.println("Name of the guest please:");
-        String guestName = sc.nextLine();
+        boolean foundReservation;
+        do{
+            String guestName = sc.nextLine();
+            // this will form the reservation object inside the controller class and not the boundary
+            foundReservation = ReservationController.reservationFindings(guestName);
+            if(!foundReservation){
+                System.out.println("Name not found, try another one");
+            }
+        } while(!foundReservation);
+    }
+
+    /**
+     *
+     * @param completeRoomNums
+     * for writing in the room numbers and info from the reservation
+     */
+
+    public static void printingReservationDetails(ArrayList<String> completeRoomNums){
+        System.out.println("The room numbers are");
+        for(String roomNums: completeRoomNums){
+            System.out.println(roomNums);
+        }
     }
 
 
@@ -111,7 +142,7 @@ public class ReservationBoundary {
                     singleRoomCheckout(room, reservation);
                 }
             }
-        } else{
+        } else {
             multiRoomCheckout(reservation);
 
         }
@@ -122,19 +153,19 @@ public class ReservationBoundary {
     private static void singleRoomCheckout(Room room, Reservation reservation){
         Scanner sc = new Scanner(System.in);
         double cost = room.roomCost();
-        reservation.getPaymentMethod().setTotalBill(cost);
+        reservation.getGuest().getPaymentMethod().setTotalBill(cost);
         System.out.println("The payment is " + cost);
 
-        if(reservation.getPaymentMethod() instanceof Cash){
+        if(reservation.getGuest().getPaymentMethod() instanceof Cash){
             System.out.println("Give cash ");
             double given_money = Double.parseDouble(sc.nextLine());
             // getting the change back from person
-            double change = ((Cash) reservation.getPaymentMethod()).change(given_money);
+            double change = ((Cash) reservation.getGuest().getPaymentMethod()).change(given_money);
             System.out.printf("Here is the change %.2f, have a lovely day!!!", change);
             room.setStatus(Room.RoomStatus.VACANT);
             reservation.getRooms().remove(room);
         }
-        if(reservation.getPaymentMethod() instanceof CreditCard){
+        if(reservation.getGuest().getPaymentMethod() instanceof CreditCard){
             System.out.println("Paying by credit card");
             System.out.println("Payment done");
             room.setStatus(Room.RoomStatus.VACANT);
@@ -146,20 +177,20 @@ public class ReservationBoundary {
     private static void multiRoomCheckout(Reservation reservation){
         Scanner sc = new Scanner(System.in);
         double price = reservation.totalReservationCost();
-        reservation.getPaymentMethod().setTotalBill(price);
+        reservation.getGuest().getPaymentMethod().setTotalBill(price);
         System.out.println("The payment is " + price);
 
-        if(reservation.getPaymentMethod() instanceof Cash){
+        if(reservation.getGuest().getPaymentMethod() instanceof Cash){
             System.out.println("Give cash");
             double given_money = Double.parseDouble(sc.nextLine());
-            double change = ((Cash) reservation.getPaymentMethod()).change(given_money);
+            double change = ((Cash) reservation.getGuest().getPaymentMethod()).change(given_money);
             System.out.printf("Here is the change %.2f, have a lovely day!!!", change);
             for(Room room: reservation.getRooms()){
                 room.setStatus(Room.RoomStatus.VACANT);
             }
             reservation.getRooms().clear();
         }
-        if(reservation.getPaymentMethod() instanceof CreditCard){
+        if(reservation.getGuest().getPaymentMethod() instanceof CreditCard){
             System.out.println("Paying by credit card");
             System.out.println("Payment done");
             for(Room room: reservation.getRooms()){
