@@ -35,6 +35,7 @@ public class Room {
     private FacingView facing;
     private ArrayList<Guest> guests;
     private ArrayList<RoomService> roomServices;
+    private Reservation reservation;
 
 	public Room(){
 		roomServices = new ArrayList<RoomService>();
@@ -117,6 +118,14 @@ public class Room {
 		this.completeRoomNumber = String.format("0%d-0%d", this.roomFloor, this.roomNumber);
 	}
 
+	public Reservation getReservation() {
+		return reservation;
+	}
+
+	public void setReservation(Reservation reservation) {
+		this.reservation = reservation;
+	}
+
 	public ArrayList<RoomService> getRoomServices() {
 		return this.roomServices;
 	}
@@ -125,7 +134,7 @@ public class Room {
 		this.roomServices.add(roomService);
 	}
 
-	public double totalCostRoomServices(){
+	private double totalCostRoomServices(){
 		double price = 0.0;
 		for(RoomService roomService: this.roomServices){
 			price = price + roomService.getCost();
@@ -160,4 +169,10 @@ public class Room {
 			System.out.printf("%d for %s\n", i, FacingView.values()[i]);
 		}
 	}
+
+	public double roomCost(){
+		double price = this.getRoomRate() + this.totalCostRoomServices();
+		return price;
+	}
+
 }

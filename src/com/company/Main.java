@@ -28,7 +28,6 @@ public class Main {
             }
             switch(choice) {
                 case 1:
-                    long num = 1234567890;
                     System.out.println("Create/Update/Search guests detail (Search by name using keyword/s) ");
                     GuestBoundary.enterGuest();
                     break;
@@ -52,11 +51,12 @@ public class Main {
                     break;
                 case 7:
                     System.out.println("Room Check-in (for walk-in or reservation)");
-                    ReservationBoundary.checkIn();
+                    ReservationBoundary.reserving();
                     break;
                 case 8:
                     System.out.println("Room Check-out and print bill invoice (with breakdowns on days of stay, room service order items\n" +
                             "and its total, tax and total amount) ");
+                    ReservationBoundary.checkout();
                     break;
                 case 9:
                     System.out.println("Print Room Status statistic report by ");

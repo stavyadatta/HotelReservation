@@ -10,7 +10,7 @@ public class GuestManager {
 	
 	// Create Guest method
 	private static int guestIdNumber =1; 
-	public static void CreateGuest() {
+	public static Guest CreateGuest() {
 	
 		String name = null;
 		String address = null;
@@ -80,6 +80,7 @@ public class GuestManager {
 		+ "\n Nationality: "+g.getNationality()+ "\n Country: "+g.getCountry()+ "\n Address: "+
 		g.getAddress());
 		guestIdNumber++;
+		return g;
 	}
 	
 	// Update Guest method

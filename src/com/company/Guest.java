@@ -11,6 +11,7 @@ public class Guest {
 	private String drivingLicense;
 	private String passportNumber;
 	private int GuestIdNum;
+	private PaymentMethod paymentMethod;
 
 	public Guest(int GuestIdNum,String name, String address, String country, String gender, String nationality, int phoneNumber, String drivingLicense, String passportNumber) {
 		this.name = name;
@@ -113,4 +114,11 @@ public class Guest {
 //	}
 
 
+	public PaymentMethod getPaymentMethod() {
+		return paymentMethod;
+	}
+
+	public void setPaymentMethod(PaymentMethod paymentMethod) {
+		this.paymentMethod = paymentMethod;
+	}
 }

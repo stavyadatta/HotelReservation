@@ -33,7 +33,7 @@ public class RoomServiceBoundary {
         } while(id!=-1);
 
         // setting up the room service object instance
-        System.out.println("Your Room number Please");
+        System.out.println("Your complete Room number Please");
         System.out.print("Floor: ");
         int floor = Integer.parseInt(sc.nextLine());
         System.out.print("Room number: ");

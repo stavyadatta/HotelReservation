@@ -4,13 +4,35 @@ import java.util.ArrayList;
 
 public class Reservation {
     private int reservationNumber;
-    private ArrayList<Guest> guests;
+    private Guest guest;
     private  ArrayList<Room> rooms;
     private PaymentMethod paymentMethod;
    // private enum reservationStatus;
+    private int numberOfGuestStaying;
+
+//    private enum reservationStatus {
+//        confirmed,
+//        inWaitlist,
+//        checkedIn,
+//        expired;
+//
+//        public String currentStatus;
+//
+//        // getter method
+//        public String getCurrentStatus()
+//        {
+//            return this.currentStatus;
+//        }
+//
+//        // enum constructor - cannot be public or protected
+//        private reservationStatus(String currentStatus)
+//        {
+//            this.currentStatus = currentStatus;
+//        }
+//
+//    }
 
     public Reservation(){
-        guests = new ArrayList<Guest>();
         rooms = new ArrayList<Room>();
     }
 
@@ -25,27 +47,33 @@ public class Reservation {
         this.reservationNumber = reservationNumber;
     }
 
-    public ArrayList<Guest> getGuests() {
-        return guests;
+    public Guest getGuest() {
+        return guest;
+    }
+
+    public void setGuest(Guest guest) {
+        this.guest = guest;
     }
 
     public ArrayList<Room> getRooms() {
         return rooms;
     }
 
-    public double totalRoom_RoomService_Cost(){
+    public double totalReservationCost() {
         // finding the total room cost of the guest
-        double total_room_cost = 0.0;
-        double total_roomService_cost = 0.0;
+        double price = 0;
         for(Room room: rooms){
-            total_room_cost = total_room_cost + room.getRoomRate();
-            for(RoomService roomService: room.getRoomServices()){
-                total_roomService_cost = total_roomService_cost + roomService.getCost();
-            }
+            price = price + room.roomCost();
         }
+        return price;
+    }
 
-        return total_room_cost + total_roomService_cost;
+    public int getNumberOfGuestStaying() {
+        return numberOfGuestStaying;
+    }
 
+    public void setNumberOfGuestStaying(int numberOfGuestStaying) {
+        this.numberOfGuestStaying = numberOfGuestStaying;
     }
 
     public PaymentMethod getPaymentMethod() {
