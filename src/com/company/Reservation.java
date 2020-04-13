@@ -31,8 +31,6 @@ public class Reservation {
 
         }
 
-
-
     public Reservation(){
         guests = new ArrayList<Guest>();
         rooms = new ArrayList<Room>();

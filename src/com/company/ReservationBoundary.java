@@ -14,7 +14,7 @@ public class ReservationBoundary {
         Scanner sc = new Scanner(System.in);
         Reservation reservation = new Reservation();
 
-        System.out.println("Names of the guest u wanna add \n-1 when all the guests have been added");
+        System.out.println("Please enter the names of the guests you would like to add \nEnter -1 when all the guests have been added");
         int decision = 0;
         while(decision != -1){
             Guest guest = GuestManager.CreateGuest();
@@ -45,17 +45,17 @@ public class ReservationBoundary {
         // finding what rooms does the user want
         int moreRooms = -2;
         do {
-            System.out.println("What kind of room do you want enter the numbers selection");
+            System.out.println("What kind of room do you want? Enter the number for selection");
             Room.printingRoomTypes();
             int decisionRoom = Integer.parseInt(sc.nextLine());
             Room.RoomType roomType = Room.RoomType.values()[decisionRoom];
 
-            System.out.println("What kind of bed do you want");
+            System.out.println("What kind of bed do you want?");
             Room.printingBedType();
             int decisionBedType = Integer.parseInt(sc.nextLine());
             Room.BedType bedType = Room.BedType.values()[decisionBedType];
 
-            System.out.println("What view do you want");
+            System.out.println("What view do you want?");
             Room.printingFacingView();
             int decisionFaceView = Integer.parseInt(sc.nextLine());
             Room.FacingView facingView = Room.FacingView.values()[decisionFaceView];
