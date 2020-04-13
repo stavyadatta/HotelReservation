@@ -4,7 +4,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class Room {
-	
+
 	public enum RoomType {
         SINGLE, DOUBLE, DELUXE, VIP
     }
@@ -109,6 +109,10 @@ public class Room {
 		this.facing = facing;
 	}
 
+	public String getCompleteRoomNumber() {
+		return completeRoomNumber;
+	}
+
 	public void setCompleteRoomNumber(){
 		this.completeRoomNumber = String.format("0%d-0%d", this.roomFloor, this.roomNumber);
 	}
@@ -138,6 +142,22 @@ public class Room {
 				System.out.printf("The item description is %s and name is %s\n", menuItem.getDescription(),
 						menuItem.getName());
 			}
+		}
+	}
+
+	public static void printingRoomTypes(){
+		for(int i = 0; i<RoomType.values().length;i++){
+			System.out.printf("%d for %s\n", i, RoomType.values()[i]);
+		}
+	}
+	public static void printingBedType(){
+		for(int i = 0; i<BedType.values().length;i++){
+			System.out.printf("%d for %s\n", i, BedType.values()[i]);
+		}
+	}
+	public static void printingFacingView(){
+		for(int i = 0; i<FacingView.values().length;i++){
+			System.out.printf("%d for %s\n", i, FacingView.values()[i]);
 		}
 	}
 }

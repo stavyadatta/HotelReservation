@@ -1,5 +1,10 @@
 package com.company;
 
+import com.company.Room.FacingView;
+import com.company.Room.BedType;
+import com.company.Room.RoomType;
+import com.company.Room.RoomStatus;
+
 import java.util.Scanner;
 
 public class HotelController {
@@ -27,5 +32,17 @@ public class HotelController {
     public static void printRoomServiceOrders(int floor, int room_num){
         Room room = Hotel.getRooms().get(floor * Hotel.ROOMS_ON_EACH_FLOOR + room_num);
 
+    }
+
+    public static Room findingRoom(RoomType roomType, BedType bedType, FacingView facingView){
+        for(Room room: Hotel.getRooms()){
+            if(room.getStatus() == RoomStatus.VACANT){
+                if(room.getRoomType() == roomType && room.getBedType() == bedType && room.getFacing() == facingView){
+                    room.setStatus(RoomStatus.OCCUPIED);
+                    return room;
+                }
+            }
+        }
+        return null;
     }
 }

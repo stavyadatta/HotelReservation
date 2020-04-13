@@ -3,8 +3,7 @@ package com.company;
 import java.util.ArrayList;
 
 public class Reservation {
-    private long reservationCode;
-    private long reservationNumber;
+    private int reservationNumber;
     private ArrayList<Guest> guests;
     private  ArrayList<Room> rooms;
     private PaymentMethod paymentMethod;
@@ -14,21 +13,15 @@ public class Reservation {
         guests = new ArrayList<Guest>();
         rooms = new ArrayList<Room>();
     }
-    public long getReservationCode() {
-        return reservationCode;
-    }
 
-    public long getReservationNumber() {
+    public int getReservationNumber() {
 
         return reservationNumber;
     }
 
-    public void setReservationCode(long reservationCode) {
 
-        this.reservationCode = reservationCode;
-    }
 
-    public void setReservationNumber(long reservationNumber) {
+    public void setReservationNumber(int reservationNumber) {
         this.reservationNumber = reservationNumber;
     }
 

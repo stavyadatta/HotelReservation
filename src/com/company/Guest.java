@@ -7,11 +7,12 @@ public class Guest {
 	private String country;
 	private String gender;
 	private String nationality;
-	private String phoneNumber;
+	private int phoneNumber;
 	private String drivingLicense;
 	private String passportNumber;
+	private int GuestIdNum;
 
-	public Guest(String name, String address, String country, String gender, String nationality, String phoneNumber, String drivingLicense, String passportNumber) {
+	public Guest(int GuestIdNum,String name, String address, String country, String gender, String nationality, int phoneNumber, String drivingLicense, String passportNumber) {
 		this.name = name;
 		this.address = address;
 		this.country = country;
@@ -20,6 +21,7 @@ public class Guest {
 		this.phoneNumber = phoneNumber;
 		this.drivingLicense = drivingLicense;
 		this.passportNumber = passportNumber;
+		this.setGuestIdNum(GuestIdNum);
 	}
 
 	public String getName() {
@@ -70,11 +72,11 @@ public class Guest {
 		this.nationality=nationality;
 	}
 	
-	public String getphoneNumber() {
+	public int getphoneNumber() {
 		return phoneNumber;
 	}
 	
-	public void setphoneNumber(String phoneNumber) {
+	public void setphoneNumber(int phoneNumber) {
 		this.phoneNumber=phoneNumber;
 	}
 	
@@ -92,6 +94,14 @@ public class Guest {
 	
 	public void setpassportNumber(String passportNumber) {
 		this.passportNumber=passportNumber;
+	}
+
+	public int getGuestIdNum() {
+		return GuestIdNum;
+	}
+
+	public void setGuestIdNum(int guestIdNum) {
+		GuestIdNum = guestIdNum;
 	}
 		
 //	public void setExpiryDate(String expiryDate) {

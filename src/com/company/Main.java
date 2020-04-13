@@ -1,8 +1,9 @@
 package com.company;
 
+import java.text.ParseException;
 import java.util.Scanner;
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
         Scanner sc = new Scanner(System.in);
         int choice=-1;
 
@@ -14,6 +15,7 @@ public class Main {
             System.out.println("3. Create/Update rooms details (include setting status like ‘Under Maintenance");
             System.out.println("4. Create a order for a room service");
             System.out.println("5. Create/Update/Remove room service menu items. ");
+            System.out.println("7. Check In");
             System.out.println("8. Check out");
 
 
@@ -50,6 +52,7 @@ public class Main {
                     break;
                 case 7:
                     System.out.println("Room Check-in (for walk-in or reservation)");
+                    ReservationBoundary.checkIn();
                     break;
                 case 8:
                     System.out.println("Room Check-out and print bill invoice (with breakdowns on days of stay, room service order items\n" +
