@@ -29,6 +29,7 @@ public class ReservationController {
             return false;
         } else {
             reservation.setReservationStatus(Reservation.ReservationStatus.CHECKEDIN);
+            // printing the reservation and room numbers that are allocated
             reservationInfo(reservation);
             return true;
         }
@@ -47,7 +48,7 @@ public class ReservationController {
     }
 
     /**
-     * finds the reservation
+     * finds the reservation using guest name
      * @param guestName
      * @return Reservation
      */
@@ -66,15 +67,15 @@ public class ReservationController {
      * array list
      * @param numberofGuests
      * @param guest
-     * @param room
+     * @param foundRooms
      * @param reservationId
      */
 
-    public static void settingUpReservationObject(int numberofGuests, Guest guest, Room room, int reservationId, Date toDate,
+    public static void settingUpReservationObject(int numberofGuests, Guest guest, ArrayList<Room> foundRooms, int reservationId, Date toDate,
                                                   Date fromDate){
         Reservation reservation = new Reservation();
         reservation.setNumberOfGuestStaying(numberofGuests);
-        reservation.getRooms().add(room);
+        reservation.getRooms().addAll(foundRooms);
         reservation.setReservationNumber(reservationId);
         reservation.setGuest(guest);
         reservation.setReservationStatus(Reservation.ReservationStatus.CONFIRMED);
@@ -83,17 +84,42 @@ public class ReservationController {
         getReservations().add(reservation);
     }
 
+    /**
+     * Checking the clashing of the date with that particular room, being used in the hotel controller class
+     * @param room
+     * @param fromDate
+     * @param toDate
+     */
+
+    public static boolean checkingNoRoomDateClash(Room room, Date fromDate, Date toDate){
+        for(Reservation reservation: reservations){
+            if(reservation.getRooms().contains(room)){
+                if(!isNotWithinRange(reservation, fromDate, toDate)){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    private static boolean isNotWithinRange(Reservation reservation, Date fromDate, Date toDate){
+        if(fromDate.before(reservation.getFromDate()) && toDate.after(reservation.getFromDate())){
+            return false;
+        } else if(fromDate.after(reservation.getFromDate()) && fromDate.before(reservation.getToDate())){
+            return false;
+        } else{
+            return true;
+        }
+    }
+
     public static void setReservations(ArrayList<Reservation> reservations) {
         ReservationController.reservations = reservations;
     }
 
-    public static Reservation findReservation(String completeRoomNum){
-        for(Reservation reservation: reservations){
-            for(Room room: reservation.getRooms()){
-                if(completeRoomNum.equals(room.getCompleteRoomNumber())){
-                    System.out.println("Reservation found");
-                    return reservation;
-                }
+    public static Reservation findReservation(String guestName){
+        for(Reservation reservation: reservations) {
+            if(guestName.equals(reservation.getGuest().getName())){
+                return reservation;
             }
         }
         System.out.println("Room not checked in, please enter correct room number");

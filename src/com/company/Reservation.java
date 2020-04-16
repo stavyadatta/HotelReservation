@@ -63,7 +63,7 @@ public class Reservation {
         // finding the total room cost of the guest
         double price = 0;
         for(Room room: rooms){
-            price = price + room.roomCost();
+            price = price + room.roomCost(this.getFromDate(), this.getToDate());
         }
         return price;
     }

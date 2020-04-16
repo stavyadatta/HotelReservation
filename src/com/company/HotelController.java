@@ -5,6 +5,7 @@ import com.company.Room.BedType;
 import com.company.Room.RoomType;
 import com.company.Room.RoomStatus;
 
+import java.util.Date;
 import java.util.Scanner;
 
 public class HotelController {
@@ -34,12 +35,26 @@ public class HotelController {
 
     }
 
-    public static Room findingRoom(RoomType roomType, BedType bedType, FacingView facingView){
+    /**
+     * this function will find the suitable room for the guest and will check the dates as well, it will return the room
+     * when the room is found
+     * @param roomType
+     * @param bedType
+     * @param facingView
+     * @param fromDate
+     * @param toDate
+     * @return
+     */
+
+    public static Room findingRoom(RoomType roomType, BedType bedType, FacingView facingView, Date fromDate, Date toDate){
         for(Room room: Hotel.getRooms()){
-            if(room.getStatus() == RoomStatus.VACANT){
+            if(room.getStatus() == RoomStatus.VACANT || room.getStatus() == RoomStatus.RESERVED){
                 if(room.getRoomType() == roomType && room.getBedType() == bedType && room.getFacing() == facingView){
-                    room.setStatus(RoomStatus.OCCUPIED);
-                    return room;
+                    // checking clashes with the date
+                    if(ReservationController.checkingNoRoomDateClash(room, fromDate, toDate)){
+                        room.setStatus(RoomStatus.RESERVED);
+                        return room;
+                    }
                 }
             }
         }

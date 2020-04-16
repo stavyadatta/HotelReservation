@@ -15,8 +15,9 @@ public class Main {
             System.out.println("3. Create/Update rooms details (include setting status like ‘Under Maintenance");
             System.out.println("4. Create a order for a room service");
             System.out.println("5. Create/Update/Remove room service menu items. ");
-            System.out.println("7. Check In");
+            System.out.println("7. For Reservations");
             System.out.println("8. Check out");
+            System.out.println("10. Checking in");
 
 
             System.out.print("Enter your choice: ");

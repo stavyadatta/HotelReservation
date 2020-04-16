@@ -57,6 +57,8 @@ public class ReservationBoundary {
 
         // finding what rooms does the user want
         int moreRooms = -2;
+        // for combining the foundrooms later
+        ArrayList<Room> foundRooms = new ArrayList<Room>();
         Room foundRoom;
         do {
             System.out.println("What kind of room do you want enter the numbers selection");
@@ -75,12 +77,13 @@ public class ReservationBoundary {
             Room.FacingView facingView = Room.FacingView.values()[decisionFaceView];
 
             // looking for the given details in the hotel
-            foundRoom = HotelController.findingRoom(roomType, bedType, facingView);
+            foundRoom = HotelController.findingRoom(roomType, bedType, facingView, fromDate, toDate);
             if (foundRoom == null) {
-                System.out.println("Sorry the room was not found!!!!");
+                System.out.println("Sorry the room was not found for the following dates, please try to find " +
+                        "some other room!!!!");
             } else {
                 System.out.println("The room is found!!! Your room number is: " + foundRoom.getCompleteRoomNumber());
-
+                foundRooms.add(foundRoom);
             }
 
             System.out.println("Want more rooms? press -1 for no and any other number for yes");
@@ -91,7 +94,7 @@ public class ReservationBoundary {
 
         System.out.println("Your reservation number is " + numberOfCheckIns);
         // This is to add the reservation along with the info to the reservation arraylist
-        ReservationController.settingUpReservationObject(numberOfGuestStaying, guest, foundRoom, numberOfCheckIns, toDate,
+        ReservationController.settingUpReservationObject(numberOfGuestStaying, guest, foundRooms, numberOfCheckIns, toDate,
                 fromDate);
         numberOfCheckIns++;
 
@@ -128,18 +131,29 @@ public class ReservationBoundary {
 
     public static void checkout(){
         Scanner sc = new Scanner(System.in);
-        System.out.println("Please type the room you want to check out of");
-        String completeRoomNum = sc.nextLine();
+        System.out.println("Please type the guest name you want to check out of");
+        String guestName = sc.nextLine();
 
         // finding the reservation with this room number
-        Reservation reservation = ReservationController.findReservation(completeRoomNum);
+        Reservation reservation = ReservationController.findReservation(guestName);
+        if(reservation == null){
+            return;
+        }
         System.out.println("You want to only check out of one room or multiple, 1 for only one room 2 for all");
         int checkOutDecision = Integer.parseInt(sc.nextLine());
         if(checkOutDecision == 1){
-            assert reservation != null;
+            System.out.print("Type your room number: ");
+            String completeRoomNum = sc.nextLine();
             for(Room room: reservation.getRooms()){
                 if(completeRoomNum.equals(room.getCompleteRoomNumber())){
                     singleRoomCheckout(room, reservation);
+                    reservation.getRooms().remove(room);
+                    break;
+                }
+                if(room.equals(reservation.getRooms().get(reservation.getRooms().size() - 1))){
+                    System.out.print("Please input the correct room Number\n");
+                    // writing the guest name again
+                    checkout();
                 }
             }
         } else {
@@ -152,7 +166,7 @@ public class ReservationBoundary {
 
     private static void singleRoomCheckout(Room room, Reservation reservation){
         Scanner sc = new Scanner(System.in);
-        double cost = room.roomCost();
+        double cost = room.roomCost(reservation.getFromDate(), reservation.getToDate());
         reservation.getGuest().getPaymentMethod().setTotalBill(cost);
         System.out.println("The payment is " + cost);
 
@@ -163,13 +177,16 @@ public class ReservationBoundary {
             double change = ((Cash) reservation.getGuest().getPaymentMethod()).change(given_money);
             System.out.printf("Here is the change %.2f, have a lovely day!!!", change);
             room.setStatus(Room.RoomStatus.VACANT);
-            reservation.getRooms().remove(room);
+            //reservation.getRooms().remove(room);
         }
         if(reservation.getGuest().getPaymentMethod() instanceof CreditCard){
             System.out.println("Paying by credit card");
             System.out.println("Payment done");
             room.setStatus(Room.RoomStatus.VACANT);
-            reservation.getRooms().remove(room);
+            if(reservation.getRooms().size() == 0){
+                ReservationController.getReservations().remove(reservation);
+            }
+            //reservation.getRooms().remove(room);
         }
 
     }

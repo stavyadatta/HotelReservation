@@ -1,7 +1,13 @@
 package com.company;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.Period;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 public class Room {
 
@@ -169,9 +175,24 @@ public class Room {
 			System.out.printf("%d for %s\n", i, FacingView.values()[i]);
 		}
 	}
+	private void printingRoomService(){
+		System.out.println("Item name    Item Description    Price    id");
+		for(RoomService roomService: this.getRoomServices()){
+			for(MenuItem menuItem: roomService.getItemsSelected()){
+				System.out.printf("%s    %s    %.2f    %d \n for room number %s\n",menuItem.getName(),
+						menuItem.getDescription(), menuItem.getPrice(),
+						menuItem.getId(), this.getCompleteRoomNumber());
+			}
+		}
+	}
 
-	public double roomCost(){
-		double price = this.getRoomRate() + this.totalCostRoomServices();
+	public double roomCost(Date fromDate, Date toDate){
+		LocalDate fromLocalDate = fromDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+		LocalDate toLocalDate = toDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+		Period period = Period.between(fromLocalDate, toLocalDate);
+		int diff = period.getDays();
+		double price = this.getRoomRate() * diff + this.totalCostRoomServices();
+		printingRoomService();
 		return price;
 	}
 
