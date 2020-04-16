@@ -33,13 +33,20 @@ public class RoomServiceBoundary {
         } while(id!=-1);
 
         // setting up the room service object instance
-        System.out.println("Your complete Room number Please");
-        System.out.print("Floor: ");
-        int floor = Integer.parseInt(sc.nextLine());
-        System.out.print("Room number: ");
-        int room_num = Integer.parseInt(sc.nextLine());
 
+        boolean correctRoomStatus;
 
-        RoomServiceController.roomServiceModifier(roomService, price, floor, room_num);
+        do {
+            System.out.println("Your complete Room number Please");
+            String completeRoomNum = sc.nextLine();
+            correctRoomStatus = RoomServiceController.roomServiceModifier(roomService, price, completeRoomNum);
+        } while (!correctRoomStatus);
+    }
+
+    /**
+     * being accessed by the controller class
+     */
+    public static void incorrectRoomNum(){
+        System.out.println("Plz output a proper room num or room hasn't been checked in yet");
     }
 }
