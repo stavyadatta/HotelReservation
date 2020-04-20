@@ -39,21 +39,13 @@ public class Room {
     private BedType bedType;
     private RoomStatus status;
     private FacingView facing;
-    private ArrayList<Guest> guests;
     private ArrayList<RoomService> roomServices;
     private Reservation reservation;
 
 	public Room(){
 		roomServices = new ArrayList<RoomService>();
-		guests = new ArrayList<Guest>();
 	}
 
-
-	public void getGuests() {
-		for(Guest guest: guests){
-			System.out.println("Names " + guest.getName() + "\n");
-		}
-	}
 
 	public double getRoomRate() {
 		return roomRate;
@@ -195,5 +187,13 @@ public class Room {
 		printingRoomService();
 		return price;
 	}
+
+	public String roomDetails(){
+		String details = String.format("The Room number is %s with room type %s and room cost %.2f",
+				this.getCompleteRoomNumber(), this.getRoomType(), this.getRoomRate());
+
+		return details;
+	}
+
 
 }

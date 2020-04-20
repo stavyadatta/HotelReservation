@@ -20,6 +20,8 @@ public class Main {
             System.out.println("9. Room Status report");
             System.out.println("10. Checking in");
             System.out.println("11. For updating reservation");
+            System.out.println("12. Reservation Removal");
+            System.out.println("13. Reservation Printing");
 
 
             System.out.print("Enter your choice: ");
@@ -73,6 +75,14 @@ public class Main {
                 case 11:
                     System.out.println("For updating the reservation");
                     ReservationBoundary.updatingReservation();
+                    break;
+                case 12:
+                    System.out.println("Reservation removal");
+                    ReservationBoundary.reservationRemoval();
+                    break;
+                case 13:
+                    System.out.println("Print Reservation");
+                    ReservationBoundary.printReservation();
                     break;
 
                 default:

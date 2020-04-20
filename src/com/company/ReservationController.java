@@ -16,15 +16,15 @@ public class ReservationController {
 
     /**
      * finds reservation using String and then passes to finding reservation o find the reservation if found this method
-     * passes true otherwise it passes false and thats how this works
+     * passes true otherwise it passes false and thats how this works, also changes the status to checked in
      * @param guestName
      * @return boolean
      */
 
-    public static boolean reservationFindings(String guestName){
+    public static boolean reservationFindings(String guestName, String passportNum){
         Reservation reservation;
         // finding the reservations by name
-        reservation = findingReservationGuest(guestName);
+        reservation = findingReservationGuest(guestName, passportNum);
         if(reservation == null){
             return false;
         } else {
@@ -53,9 +53,9 @@ public class ReservationController {
      * @return Reservation
      */
 
-    private static Reservation findingReservationGuest(String guestName){
+    private static Reservation findingReservationGuest(String guestName, String passportNum){
         for(Reservation reservation: reservations){
-            if(guestName.equals(reservation.getGuest().getName())){
+            if(guestName.equals(reservation.getGuest().getName()) && passportNum.equals(reservation.getGuest().getpassportNumber())){
                 return reservation;
             }
         }
@@ -92,7 +92,7 @@ public class ReservationController {
      */
 
     public static boolean checkingNoRoomDateClash(Room room, Date fromDate, Date toDate){
-        for(Reservation reservation: reservations){
+        for(Reservation reservation: getReservations()){
             if(reservation.getRooms().contains(room)){
                 if(!isNotWithinRange(reservation, fromDate, toDate)){
                     return false;
@@ -123,11 +123,16 @@ public class ReservationController {
                 return reservation;
             }
         }
-        System.out.println("Room not checked in, please enter correct room number");
+        System.out.println("Room not reserved in, please enter correct room number");
         return null;
     }
     public static void changingGuestNum(Reservation reservation, int numOfGuests){
         reservation.setNumberOfGuestStaying(numOfGuests);
+    }
+
+    public static void reservationRemoveController(String guestName, String passportNum){
+        Reservation reservation = findReservation(guestName, passportNum);
+        getReservations().remove(reservation);
     }
 
 }

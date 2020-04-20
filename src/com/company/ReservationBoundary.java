@@ -102,15 +102,16 @@ public class ReservationBoundary {
 
     public static void checkIn(){
         Scanner sc = new Scanner(System.in);
-        System.out.println("Name of the guest please:");
         boolean foundReservation;
         do{
+            System.out.println("Name of the guest please:");
             String guestName = sc.nextLine();
+            System.out.println("Passport num plz");
+            String guestPassportNum = sc.nextLine();
             // this will form the reservation object inside the controller class and not the boundary
-            foundReservation = ReservationController.reservationFindings(guestName);
+            foundReservation = ReservationController.reservationFindings(guestName, guestPassportNum);
             if(!foundReservation){
                 System.out.println("Name not found, try another one");
-                //checkIn();
             }
         } while(!foundReservation);
     }
@@ -128,7 +129,9 @@ public class ReservationBoundary {
         }
     }
 
-
+    /**
+     * checks out of lets see
+     */
 
     public static void checkout(){
         Scanner sc = new Scanner(System.in);
@@ -140,6 +143,7 @@ public class ReservationBoundary {
         // finding the reservation with this room number
         Reservation reservation = ReservationController.findReservation(guestName, passport);
         if(reservation == null){
+            System.out.println("Reservation not found");
             return;
         }
         System.out.println("You want to only check out of one room or multiple, 1 for only one room 2 for all");
@@ -147,10 +151,12 @@ public class ReservationBoundary {
         if(checkOutDecision == 1){
             System.out.print("Type your room number: ");
             String completeRoomNum = sc.nextLine();
+            int removeRoom = -1;
+            // going through each and every rooms and break is there to avoid the recursion in case the room is found
             for(Room room: reservation.getRooms()){
                 if(completeRoomNum.equals(room.getCompleteRoomNumber())){
                     singleRoomCheckout(room, reservation);
-                    reservation.getRooms().remove(room);
+                    removeRoom = reservation.getRooms().indexOf(room);
                     break;
                 }
                 if(room.equals(reservation.getRooms().get(reservation.getRooms().size() - 1))){
@@ -158,7 +164,13 @@ public class ReservationBoundary {
                     // writing the guest name again
                     checkout();
                 }
+
+
             }
+            if(removeRoom == -1) {
+                System.out.println("Please use the correct room num");
+            }
+            reservation.getRooms().remove(removeRoom);
         } else {
             multiRoomCheckout(reservation);
 
@@ -219,7 +231,8 @@ public class ReservationBoundary {
             reservation.getRooms().clear();
         }
         // remove reservation after checkout n
-        ReservationController.getReservations().remove(reservation);
+        ReservationController.reservationRemoveController(reservation.getGuest().getName(),
+                reservation.getGuest().getpassportNumber());
     }
 
     public static void updatingReservation() throws ParseException {
@@ -293,5 +306,29 @@ public class ReservationBoundary {
             }
         }
         reservation.getRooms().remove(index);
+    }
+
+    /**
+     * To remove reservation
+     */
+
+    public static void reservationRemoval(){
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Please write your name: ");
+        String guestName = sc.nextLine();
+        System.out.println("Please write your passport number");
+        String passportNum = sc.nextLine();
+
+        ReservationController.reservationRemoveController(guestName, passportNum);
+
+    }
+
+    public static void printReservation(){
+        for(Reservation reservation : ReservationController.getReservations()){
+            System.out.println("Name of the Guest: " + reservation.getGuest().getName());
+            for(Room room: reservation.getRooms()){
+                System.out.println(room.roomDetails());
+            }
+        }
     }
 }

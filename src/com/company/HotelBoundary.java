@@ -7,6 +7,24 @@ import java.util.Scanner;
 public class HotelBoundary {
     public static void enterHotel(){
         Scanner sc = new Scanner(System.in);
+        System.out.println("Do u want to check room details 1 for yes 0 for no");
+        boolean viewError;
+        do {
+            viewError = false;
+            int viewRooms = Integer.parseInt(sc.nextLine());
+            switch (viewRooms) {
+                case 0:
+                    break;
+                case 1:
+                    HotelController.printRooms();
+                    return;
+                default:
+                    System.out.println("Only those 2 numbers");
+                    viewError = true;
+                    break;
+            }
+        }while (viewError);
+
         System.out.print("What room number do you want\nFloor:  ");
         int floorNum = Integer.parseInt(sc.nextLine());
         while(floorNum < 0 || floorNum >= Hotel.FLOORS){
@@ -22,23 +40,27 @@ public class HotelBoundary {
 
 
         System.out.println("What do you want from this room number\n 1 for changing status of the room number" +
-                "\n 2 changing the weekday cost of the room number\n 3 changing the weekend cost\n 4 for rooms");
+                "\n 2 changing the weekday cost of the room number\n 3 changing the weekend cost\n");
 
-        int decision = Integer.parseInt(sc.nextLine());
 
-        switch (decision){
-            case 1:
-               HotelController.changeStatus(floorNum*Hotel.ROOMS_ON_EACH_FLOOR + roomNum);
-               break;
-            case 2:
-                System.out.print("What cost do u want: ");
-                double price = Double.parseDouble(sc.nextLine());
-                HotelController.changing_room_cost(price, roomNum);
-            case 4:
-                HotelController.printRooms();
-                break;
+        boolean wrongDecision;
+        do {
+            wrongDecision = false;
+            int decision = Integer.parseInt(sc.nextLine());
+            switch (decision) {
 
-        }
+                case 1:
+                    HotelController.changeStatus(floorNum * Hotel.ROOMS_ON_EACH_FLOOR + roomNum);
+                    break;
+                case 2:
+                    System.out.print("What cost do u want: ");
+                    double price = Double.parseDouble(sc.nextLine());
+                    HotelController.changing_room_cost(price, roomNum);
+                default:
+                    System.out.println("Only those numbers");
+                    wrongDecision = true;
+            }
+        }while(wrongDecision);
     }
 
     public static void choosingRoom(){

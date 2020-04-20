@@ -108,8 +108,11 @@ public class GuestManager {
 	public static void UpdateGuest() {
 		
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Enter GuestIdNumber to update their details:");
-		int GuestIdNumber = sc.nextInt();
+		System.out.println("Enter Guest Name");
+		String guestName = sc.nextLine();
+		System.out.println("Enter the Guest passport");
+		String guestPassport = sc.nextLine();
+		int GuestIdNumber = Integer.parseInt(sc.nextLine());
 		sc.nextLine();
 				 
 		for(int i = 0; i < guestDetails.size(); i++){
