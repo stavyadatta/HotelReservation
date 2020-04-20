@@ -25,17 +25,19 @@ public class MenuBoundary {
                  break;
 
              case 2:
+                 Menu.displayMenuItems();
                  System.out.println("What menu item u wanna update ");
                  Menu.updateMenuItem();
                  break;
 
              case 3:
+                 Menu.displayMenuItems();
                  System.out.println("What item u want to remove ");
                  int idOfRemovalItem = Integer.parseInt(sc.nextLine());
                  Menu.removeMenuItem(idOfRemovalItem);
 
              case 4:
-                 System.out.println("The items in the arraylist");
+                 System.out.println("The items in the menu are");
                  Menu.displayMenuItems();
 
 

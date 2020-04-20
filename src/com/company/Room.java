@@ -6,6 +6,7 @@ import java.time.Period;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
@@ -183,8 +184,29 @@ public class Room {
 		LocalDate toLocalDate = toDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 		Period period = Period.between(fromLocalDate, toLocalDate);
 		int diff = period.getDays();
-		double price = this.getRoomRate() * diff + this.totalCostRoomServices();
-		printingRoomService();
+		if(diff <=0){
+			diff = 1;
+		}
+
+		Calendar fromCal = Calendar.getInstance();
+		Calendar toCal = Calendar.getInstance();
+		fromCal.setTime(fromDate);
+		toCal.setTime(toDate);
+
+		int numOfWeekends = 0;
+		while(fromCal.before(toCal)){
+			if(Calendar.SATURDAY == fromCal.get(Calendar.DAY_OF_WEEK) ||
+					Calendar.SUNDAY == fromCal.get(Calendar.DAY_OF_WEEK)){
+				numOfWeekends++;
+			}
+		}
+		if(diff > 1){
+			diff = diff - numOfWeekends;
+		}
+
+		double price = this.getRoomRate() * diff + this.getRoomWeekendRate() * numOfWeekends
+				+ this.totalCostRoomServices();
+		this.printingRoomService();
 		return price;
 	}
 

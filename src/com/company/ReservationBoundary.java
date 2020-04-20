@@ -2,6 +2,8 @@ package com.company;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
@@ -14,7 +16,11 @@ public class ReservationBoundary {
         numberOfCheckIns = 0;
     }
 
-
+    /**
+     * Reserves the rooms, takes in the dates and info of the guests and later adds them to
+     * to the reservation room array list
+     * @throws ParseException
+     */
 
     public static void reserving() throws ParseException {
         Scanner sc = new Scanner(System.in);
@@ -27,13 +33,27 @@ public class ReservationBoundary {
         int numberOfGuestStaying = Integer.parseInt(sc.nextLine());
 
         // setting the dates
-        System.out.println("Please write from date in dd/MM/yyyy format");
-        String dateFromInput = sc.nextLine();
-        Date fromDate = new SimpleDateFormat("dd/MM/yyyy").parse(dateFromInput);
+        boolean validDate;
+        Date fromDate;
+        Date toDate;
+        do {
+            validDate = true;
+            System.out.println("Please write from date in dd/MM/yyyy format");
+            String dateFromInput = sc.nextLine();
+            fromDate = new SimpleDateFormat("dd/MM/yyyy").parse(dateFromInput);
 
-        System.out.println("Please write your to date in dd/MM/yyyy format  ");
-        String dateToInput = sc.nextLine();
-        Date toDate = new SimpleDateFormat("dd/MM/yyyy").parse(dateToInput);
+            System.out.println("Please write your to date in dd/MM/yyyy format  ");
+            String dateToInput = sc.nextLine();
+            toDate = new SimpleDateFormat("dd/MM/yyyy").parse(dateToInput);
+
+            // checking if from date is after to date and if from date is not before the current date
+            LocalDateTime now = LocalDateTime.now();
+            Date nowDate = Date.from(now.atZone(ZoneId.systemDefault()).toInstant());
+            if (!fromDate.before(toDate) || fromDate.before(nowDate)) {
+                System.out.println("The date is not valid");
+                validDate = false;
+            }
+        }while(!validDate);
 
         // finding what rooms does the user want
         boolean roomNotAdded = false;
@@ -42,6 +62,7 @@ public class ReservationBoundary {
             foundRooms = addingRoom(fromDate, toDate);
             if(foundRooms == null){
                 roomNotAdded = true;
+                System.out.println("No room in the reservation, plz add room");
             } else {
                 roomNotAdded = false;
             }
@@ -54,6 +75,13 @@ public class ReservationBoundary {
         numberOfCheckIns++;
 
     }
+
+    /**
+     *  add rooms and room types to array list of the rooms in the reservation
+     * @param fromDate
+     * @param toDate
+     * @return
+     */
 
     private static ArrayList<Room> addingRoom(Date fromDate, Date toDate){
         Scanner sc = new Scanner(System.in);
@@ -99,6 +127,10 @@ public class ReservationBoundary {
 
     }
 
+    /**
+     * Changes the status of the reservation to checkIn, to be noted that the items cant be ordered
+     * unless they are not checkedIn
+     */
 
     public static void checkIn(){
         Scanner sc = new Scanner(System.in);
@@ -130,7 +162,7 @@ public class ReservationBoundary {
     }
 
     /**
-     * checks out of lets see
+     * checks out of reservation and deletes them in the process
      */
 
     public static void checkout(){
@@ -159,16 +191,11 @@ public class ReservationBoundary {
                     removeRoom = reservation.getRooms().indexOf(room);
                     break;
                 }
-                if(room.equals(reservation.getRooms().get(reservation.getRooms().size() - 1))){
-                    System.out.print("Please input the correct room Number\n");
-                    // writing the guest name again
-                    checkout();
-                }
-
 
             }
             if(removeRoom == -1) {
                 System.out.println("Please use the correct room num");
+                return;
             }
             reservation.getRooms().remove(removeRoom);
         } else {
@@ -234,6 +261,11 @@ public class ReservationBoundary {
         ReservationController.reservationRemoveController(reservation.getGuest().getName(),
                 reservation.getGuest().getpassportNumber());
     }
+
+    /**
+     * updating the reservation
+     * @throws ParseException
+     */
 
     public static void updatingReservation() throws ParseException {
         Scanner sc = new Scanner(System.in);

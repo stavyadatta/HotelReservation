@@ -33,6 +33,10 @@ public class HotelController {
         Hotel.change_room_price(cost, room_num);
 
     }
+
+    public static void changingWeekendRoomRate(double cost, int roomNum){
+        Hotel.changeWeekendRoomRate(cost, roomNum);
+    }
     public static void printRoomServiceOrders(int floor, int room_num){
         Room room = Hotel.getRooms().get(floor * Hotel.ROOMS_ON_EACH_FLOOR + room_num);
 

@@ -53,9 +53,15 @@ public class HotelBoundary {
                     HotelController.changeStatus(floorNum * Hotel.ROOMS_ON_EACH_FLOOR + roomNum);
                     break;
                 case 2:
-                    System.out.print("What cost do u want: ");
+                    System.out.print("What Weekday cost do u want: ");
                     double price = Double.parseDouble(sc.nextLine());
-                    HotelController.changing_room_cost(price, roomNum);
+                    HotelController.changing_room_cost(price, floorNum * Hotel.ROOMS_ON_EACH_FLOOR + roomNum);
+                    break;
+                case 3:
+                    System.out.println("What weekend cost u want");
+                    double weekEndPrice = Double.parseDouble(sc.nextLine());
+                    HotelController.changingWeekendRoomRate(weekEndPrice, floorNum * Hotel.ROOMS_ON_EACH_FLOOR + roomNum);
+                    break;
                 default:
                     System.out.println("Only those numbers");
                     wrongDecision = true;

@@ -27,6 +27,7 @@ public class Hotel {
                         current_room.setRoomType(Room.RoomType.SINGLE);
                         current_room.setCompleteRoomNumber();
                         current_room.setRoomRate(120.23);
+                        current_room.setRoomWeekendRate(140.23);
                         rooms.add(current_room);
                         break;
 
@@ -38,6 +39,7 @@ public class Hotel {
                         current_room.setRoomType(Room.RoomType.SINGLE);
                         current_room.setCompleteRoomNumber();
                         current_room.setRoomRate(142.34);
+                        current_room.setRoomWeekendRate(162.34);
                         rooms.add(current_room);
                         break;
 
@@ -49,6 +51,7 @@ public class Hotel {
                         current_room.setRoomType(Room.RoomType.DOUBLE);
                         current_room.setCompleteRoomNumber();
                         current_room.setRoomRate(163.34);
+                        current_room.setRoomWeekendRate(183.34);
                         rooms.add(current_room);
                         break;
 
@@ -60,6 +63,7 @@ public class Hotel {
                         current_room.setRoomType(Room.RoomType.DOUBLE);
                         current_room.setCompleteRoomNumber();
                         current_room.setRoomRate(1300.23);
+                        current_room.setRoomWeekendRate(1400.23);
                         rooms.add(current_room);
                         break;
 
@@ -71,6 +75,7 @@ public class Hotel {
                         current_room.setRoomType(Room.RoomType.DELUXE);
                         current_room.setCompleteRoomNumber();
                         current_room.setRoomRate(3420.23);
+                        current_room.setRoomWeekendRate(3600.23);
                         rooms.add(current_room);
                         break;
 
@@ -82,6 +87,7 @@ public class Hotel {
                         current_room.setRoomType(Room.RoomType.DELUXE);
                         current_room.setCompleteRoomNumber();
                         current_room.setRoomRate(1450.23);
+                        current_room.setRoomWeekendRate(1620.20);
                         rooms.add(current_room);
                         break;
 
@@ -93,6 +99,7 @@ public class Hotel {
                         current_room.setRoomType(Room.RoomType.DELUXE);
                         current_room.setCompleteRoomNumber();
                         current_room.setRoomRate(2341.21);
+                        current_room.setRoomWeekendRate(2500.23);
                         rooms.add(current_room);
                         break;
 
@@ -104,6 +111,7 @@ public class Hotel {
                         current_room.setRoomType(Room.RoomType.VIP);
                         current_room.setCompleteRoomNumber();
                         current_room.setRoomRate(2314.29);
+                        current_room.setRoomWeekendRate(2600.23);
                         rooms.add(current_room);
                         break;
                 }
@@ -146,6 +154,9 @@ public class Hotel {
     public static void change_room_price(double price, int room_num){
         rooms.get(room_num).setRoomRate(price);
 
+    }
+    public static void changeWeekendRoomRate(double price, int roomNum){
+        getRooms().get(roomNum).setRoomWeekendRate(price);
     }
 
     public static void change_weekend_price(double price, int room_num){

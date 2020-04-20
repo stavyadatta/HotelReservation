@@ -20,7 +20,7 @@ public class RoomServiceController {
        room.addRoomService(roomService);
        System.out.println("Your ordered has been placed");
 
-       System.out.println("Your order is: ");
+       System.out.print("Your order is: ");
        room.printRoomServices();
        return true;
     }
