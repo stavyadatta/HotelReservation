@@ -5,7 +5,10 @@ import com.company.Room.BedType;
 import com.company.Room.RoomType;
 import com.company.Room.RoomStatus;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class HotelController {
@@ -60,4 +63,93 @@ public class HotelController {
         }
         return null;
     }
+
+    /**
+     * Checks the room occupancy and passes the number of vacant, occupied, reserved, under maintenance and null
+     * and passing the values to find the percentage respectively
+     */
+    public static void roomOccupancy(){
+        final int numOfRooms = Hotel.NUMBER_OF_ROOMS;
+        // list of all room types
+        ArrayList<Room> vacantRooms = new ArrayList<Room>();
+        ArrayList<Room> occupiedRooms = new ArrayList<Room>();
+        ArrayList<Room> reservedRooms = new ArrayList<Room>();
+        ArrayList<Room> underMaintenanceRooms = new ArrayList<Room>();
+        ArrayList<Room> nullRooms = new ArrayList<Room>();
+        int numOfVacant = 0;
+        int numOfOccupied = 0;
+        int numOfReserved = 0;
+        int numOfUnderMaintenance = 0;
+        int numOfNull =0;
+        for(Room room: Hotel.getRooms()){
+            switch (room.getStatus()){
+                case VACANT:
+                    numOfVacant++;
+                    vacantRooms.add(room);
+                    break;
+                case OCCUPIED:
+                    numOfOccupied++;
+                    occupiedRooms.add(room);
+                    break;
+                case RESERVED:
+                    numOfReserved++;
+                    reservedRooms.add(room);
+                    break;
+                case UNDER_MAINTENANCE:
+                    numOfUnderMaintenance++;
+                    underMaintenanceRooms.add(room);
+                    break;
+                default:
+                    numOfNull++;
+                    nullRooms.add(room);
+                    break;
+            }
+        }
+        // HashMap to store values of the keys
+        HashMap<Room.RoomStatus, ArrayList<Room>> roomStatusArrayListHashMap = new HashMap<Room.RoomStatus, ArrayList<Room>>();
+        roomStatusArrayListHashMap.put(RoomStatus.VACANT, vacantRooms);
+        roomStatusArrayListHashMap.put(RoomStatus.OCCUPIED, occupiedRooms);
+        roomStatusArrayListHashMap.put(RoomStatus.RESERVED, reservedRooms);
+        roomStatusArrayListHashMap.put(RoomStatus.UNDER_MAINTENANCE, underMaintenanceRooms);
+
+        HotelBoundary.printingRoomStatusOccupancy(numOfVacant, numOfOccupied, numOfReserved, numOfUnderMaintenance);
+
+        detailsPerRoomType(roomStatusArrayListHashMap);
+
+    }
+
+    private static void detailsPerRoomType(HashMap<Room.RoomStatus, ArrayList<Room>> roomStatusArrayListHashMap){
+        // getting info about vacant rooms
+        for(Room.RoomStatus roomStatus: roomStatusArrayListHashMap.keySet()){
+            accessingEachRoomType(roomStatus, roomStatusArrayListHashMap.get(roomStatus));
+        }
+    }
+
+    private static void accessingEachRoomType(Room.RoomStatus roomStatus, ArrayList<Room> rooms){
+            int numOfSingleRoom = 0;
+            int numOfDoubleRoom = 0;
+            int numOfDeluxeRoom = 0;
+            int numOfVIPRooms = 0;
+
+            for(Room room: rooms){
+                Room.RoomType roomType = room.getRoomType();
+                switch (roomType){
+                    case SINGLE:
+                        numOfSingleRoom++;
+                        break;
+                    case DELUXE:
+                        numOfDeluxeRoom++;
+                        break;
+                    case DOUBLE:
+                        numOfDoubleRoom++;
+                        break;
+                    case VIP:
+                        numOfVIPRooms++;
+                        break;
+                }
+            }
+            HotelBoundary.printingRoomTypeOccupancy(roomStatus, numOfSingleRoom, numOfDoubleRoom, numOfDeluxeRoom
+                    , numOfVIPRooms, rooms.size());
+    }
+
 }

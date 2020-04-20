@@ -1,4 +1,5 @@
 package com.company;
+import java.text.ParseException;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -10,7 +11,7 @@ public class GuestManager {
 	
 	// Create Guest method
 	private static int guestIdNumber =1; 
-	public static Guest CreateGuest() {
+	public static Guest CreateGuest() throws ParseException {
 	
 		String name = null;
 		String address = null;
@@ -71,6 +72,25 @@ public class GuestManager {
 		g.setAddress(address);
 		
 		g.setGuestIdNum(GuestIdNum);
+		int method = -1;
+		do{
+			System.out.print("Payment method 1 for card and 2 for cash: ");
+			method = Integer.parseInt(sc.nextLine());
+			switch (method){
+				case 1:
+					System.out.println("Payment via card");
+					CreditCard creditCard = CreditCardBoundary.enterCreditCardDetails();
+					g.setPaymentMethod(creditCard);
+					break;
+				case 2:
+					System.out.println("Payment via cash");
+					Cash cash = new Cash();
+					g.setPaymentMethod(cash);
+					break;
+				default:
+					System.out.println("Please select a number between 1 and 2");
+			}
+		}while(method < 1 || method > 2);
 		
 		guestDetails.add(g);
 		

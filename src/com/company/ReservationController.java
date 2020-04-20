@@ -15,7 +15,7 @@ public class ReservationController {
     }
 
     /**
-     * finds reservation using String and then passes to findingreservation o find the reservation if found this method
+     * finds reservation using String and then passes to finding reservation o find the reservation if found this method
      * passes true otherwise it passes false and thats how this works
      * @param guestName
      * @return boolean
@@ -116,17 +116,18 @@ public class ReservationController {
         ReservationController.reservations = reservations;
     }
 
-    public static Reservation findReservation(String guestName){
+    public static Reservation findReservation(String guestName, String passport){
         for(Reservation reservation: reservations) {
-            if(guestName.equals(reservation.getGuest().getName())){
+            if(guestName.equals(reservation.getGuest().getName()) &&
+                    passport.equals(reservation.getGuest().getpassportNumber())){
                 return reservation;
             }
         }
         System.out.println("Room not checked in, please enter correct room number");
         return null;
     }
-
-
-
+    public static void changingGuestNum(Reservation reservation, int numOfGuests){
+        reservation.setNumberOfGuestStaying(numOfGuests);
+    }
 
 }

@@ -25,6 +25,7 @@ public class Guest {
 		this.setGuestIdNum(GuestIdNum);
 	}
 
+
 	public String getName() {
 		return name;
 	}

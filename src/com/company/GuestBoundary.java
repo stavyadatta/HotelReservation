@@ -1,9 +1,10 @@
 package com.company;
+import java.text.ParseException;
 import java.util.Scanner;
 
 public class GuestBoundary {
 	
-	public static void enterGuest() {
+	public static void enterGuest() throws ParseException {
 		
 	    System.out.println("Choose to: \n 1 Add guest \n 2 Update guest \n 3 Search Guest "
 	    		+ "\n 4 Remove guest \n 5 Exit");

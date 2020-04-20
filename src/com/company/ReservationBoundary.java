@@ -35,27 +35,28 @@ public class ReservationBoundary {
         String dateToInput = sc.nextLine();
         Date toDate = new SimpleDateFormat("dd/MM/yyyy").parse(dateToInput);
 
-        int method = -1;
-        do {
-            System.out.print("Payment method 1 for card and 2 for cash: ");
-            method = Integer.parseInt(sc.nextLine());
-            switch (method) {
-                case 1:
-                    System.out.println("Payment via card");
-                    CreditCard creditCard = CreditCardBoundary.enterCreditCardDetails();
-                    guest.setPaymentMethod(creditCard);
-                    break;
-                case 2:
-                    System.out.println("Payment via cash");
-                    Cash cash = new Cash();
-                    guest.setPaymentMethod(cash);
-                    break;
-                default:
-                    System.out.println("Please select a number between 1 and 2");
-            }
-        } while(method < 1 || method > 2);
-
         // finding what rooms does the user want
+        boolean roomNotAdded = false;
+        ArrayList<Room> foundRooms;
+        do {
+            foundRooms = addingRoom(fromDate, toDate);
+            if(foundRooms == null){
+                roomNotAdded = true;
+            } else {
+                roomNotAdded = false;
+            }
+        }while(roomNotAdded);
+
+        System.out.println("Your reservation number is " + numberOfCheckIns);
+        // This is to add the reservation along with the info to the reservation arraylist
+        ReservationController.settingUpReservationObject(numberOfGuestStaying, guest, foundRooms, numberOfCheckIns, toDate,
+                fromDate);
+        numberOfCheckIns++;
+
+    }
+
+    private static ArrayList<Room> addingRoom(Date fromDate, Date toDate){
+        Scanner sc = new Scanner(System.in);
         int moreRooms = -2;
         // for combining the foundrooms later
         ArrayList<Room> foundRooms = new ArrayList<Room>();
@@ -90,15 +91,14 @@ public class ReservationBoundary {
             moreRooms = Integer.parseInt(sc.nextLine());
 
         }while(moreRooms != -1);
+        if(foundRooms.size() == 0){
+            return null;
+        }
 
-
-        System.out.println("Your reservation number is " + numberOfCheckIns);
-        // This is to add the reservation along with the info to the reservation arraylist
-        ReservationController.settingUpReservationObject(numberOfGuestStaying, guest, foundRooms, numberOfCheckIns, toDate,
-                fromDate);
-        numberOfCheckIns++;
+        return foundRooms;
 
     }
+
 
     public static void checkIn(){
         Scanner sc = new Scanner(System.in);
@@ -110,6 +110,7 @@ public class ReservationBoundary {
             foundReservation = ReservationController.reservationFindings(guestName);
             if(!foundReservation){
                 System.out.println("Name not found, try another one");
+                //checkIn();
             }
         } while(!foundReservation);
     }
@@ -133,9 +134,11 @@ public class ReservationBoundary {
         Scanner sc = new Scanner(System.in);
         System.out.println("Please type the guest name you want to check out of");
         String guestName = sc.nextLine();
+        System.out.println("Please type your passport number");
+        String passport = sc.nextLine();
 
         // finding the reservation with this room number
-        Reservation reservation = ReservationController.findReservation(guestName);
+        Reservation reservation = ReservationController.findReservation(guestName, passport);
         if(reservation == null){
             return;
         }
@@ -217,5 +220,78 @@ public class ReservationBoundary {
         }
         // remove reservation after checkout n
         ReservationController.getReservations().remove(reservation);
+    }
+
+    public static void updatingReservation() throws ParseException {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("What is the name of the guest: ");
+        String name = sc.nextLine();
+        System.out.print("What is your passport number: ");
+        String passportNum = sc.nextLine();
+
+        Reservation reservation = ReservationController.findReservation(name, passportNum);
+        if(reservation == null){
+            System.out.println("The reservation is not found, please try again");
+            return;
+        }
+        System.out.println("What would you like to change about this reservation");
+        System.out.println("1. To add room");
+        System.out.println("2. To remove room");
+        System.out.println("3. To change guest details");
+        System.out.println("4. Change the number of guest staying");
+        System.out.println("5. Change the fromDate");
+        System.out.println("6. Change the toDate ");
+
+        int decision = Integer.parseInt(sc.nextLine());
+
+        switch (decision){
+            case 1:
+                ArrayList<Room> addedRooms = addingRoom(reservation.getFromDate(), reservation.getToDate());
+                assert addedRooms != null;
+                reservation.getRooms().addAll(addedRooms);
+                break;
+            case 2:
+                roomRemoval(reservation);
+                break;
+            case 3:
+                GuestManager.UpdateGuest();
+                break;
+            case 4:
+                System.out.println("Number of guest staying currently " + reservation.getNumberOfGuestStaying());
+                System.out.print("New numbers: ");
+                int numOfGuests = Integer.parseInt(sc.nextLine());
+                ReservationController.changingGuestNum(reservation, numOfGuests);
+                break;
+            case 5:
+                String dateString = sc.nextLine();
+                SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+                Date date = formatter.parse(dateString);
+                reservation.setFromDate(date);
+                System.out.println("Date changed");
+                break;
+            case 6:
+                String dateString2 = sc.nextLine();
+                SimpleDateFormat formatter2 = new SimpleDateFormat("dd/MM/yyyy");
+                Date date2 = formatter2.parse(dateString2);
+                reservation.setToDate(date2);
+                System.out.println("Date changed");
+                break;
+        }
+    }
+
+    private static void roomRemoval(Reservation reservation){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("What room do you want to remove");
+        for(Room room: reservation.getRooms()){
+            System.out.println(room.getCompleteRoomNumber());
+        }
+        String roomNum = sc.nextLine();
+        int index = -1;
+        for(Room room: reservation.getRooms()){
+            if(roomNum.equals(room.getCompleteRoomNumber())){
+                index = reservation.getRooms().indexOf(room);
+            }
+        }
+        reservation.getRooms().remove(index);
     }
 }

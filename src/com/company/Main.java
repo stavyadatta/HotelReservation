@@ -17,7 +17,9 @@ public class Main {
             System.out.println("5. Create/Update/Remove room service menu items. ");
             System.out.println("7. For Reservations");
             System.out.println("8. Check out");
+            System.out.println("9. Room Status report");
             System.out.println("10. Checking in");
+            System.out.println("11. For updating reservation");
 
 
             System.out.print("Enter your choice: ");
@@ -55,16 +57,24 @@ public class Main {
                     ReservationBoundary.reserving();
                     break;
                 case 8:
-                    System.out.println("Room Check-out and print bill invoice (with breakdowns on days of stay, room service order items\n" +
+                    System.out.println("Room Check-out and print bill invoice (with breakdowns on days of stay, " +
+                            "room service order items\n" +
                             "and its total, tax and total amount) ");
                     ReservationBoundary.checkout();
                     break;
                 case 9:
                     System.out.println("Print Room Status statistic report by ");
+                    HotelBoundary.roomStats();
                     break;
                 case 10:
                     System.out.println("for check in");
                     ReservationBoundary.checkIn();
+                    break;
+                case 11:
+                    System.out.println("For updating the reservation");
+                    ReservationBoundary.updatingReservation();
+                    break;
+
                 default:
                     System.out.println("only choose between ");
 
