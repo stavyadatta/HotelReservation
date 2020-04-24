@@ -19,7 +19,7 @@ public class HotelBoundary {
                     HotelController.printRooms();
                     return;
                 default:
-                    System.out.println("Please select option 1 or 2");
+                    System.out.println("Please select a valid option");
                     viewError = true;
                     break;
             }
