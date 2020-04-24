@@ -38,11 +38,11 @@ public class ReservationBoundary {
         Date toDate;
         do {
             validDate = true;
-            System.out.println("Please write from date in dd/MM/yyyy format");
+            System.out.println("Please enter the start date (DD/MM/YYYY):");
             String dateFromInput = sc.nextLine();
             fromDate = new SimpleDateFormat("dd/MM/yyyy").parse(dateFromInput);
 
-            System.out.println("Please write your to date in dd/MM/yyyy format  ");
+            System.out.println("Please enter the end date (DD/MM/YYYY):  ");
             String dateToInput = sc.nextLine();
             toDate = new SimpleDateFormat("dd/MM/yyyy").parse(dateToInput);
 
@@ -50,7 +50,7 @@ public class ReservationBoundary {
             LocalDateTime now = LocalDateTime.now();
             Date nowDate = Date.from(now.atZone(ZoneId.systemDefault()).toInstant());
             if (!fromDate.before(toDate) || fromDate.before(nowDate)) {
-                System.out.println("The date is not valid");
+                System.out.println("This is not a valid date!");
                 validDate = false;
             }
         }while(!validDate);
@@ -62,7 +62,7 @@ public class ReservationBoundary {
             foundRooms = addingRoom(fromDate, toDate);
             if(foundRooms == null){
                 roomNotAdded = true;
-                System.out.println("No room in the reservation, plz add room");
+                System.out.println("There is no room in the reservation, please add room.");
             } else {
                 roomNotAdded = false;
             }
@@ -90,17 +90,17 @@ public class ReservationBoundary {
         ArrayList<Room> foundRooms = new ArrayList<Room>();
         Room foundRoom;
         do {
-            System.out.println("What kind of room do you want enter the numbers selection");
+            System.out.println("What kind of room would you like? Please enter the corresponding option.");
             Room.printingRoomTypes();
             int decisionRoom = Integer.parseInt(sc.nextLine());
             Room.RoomType roomType = Room.RoomType.values()[decisionRoom];
 
-            System.out.println("What kind of bed do you want");
+            System.out.println("What kind of bed would you like?");
             Room.printingBedType();
             int decisionBedType = Integer.parseInt(sc.nextLine());
             Room.BedType bedType = Room.BedType.values()[decisionBedType];
 
-            System.out.println("What view do you want");
+            System.out.println("Which view would you prefer?");
             Room.printingFacingView();
             int decisionFaceView = Integer.parseInt(sc.nextLine());
             Room.FacingView facingView = Room.FacingView.values()[decisionFaceView];
@@ -108,14 +108,14 @@ public class ReservationBoundary {
             // looking for the given details in the hotel
             foundRoom = HotelController.findingRoom(roomType, bedType, facingView, fromDate, toDate);
             if (foundRoom == null) {
-                System.out.println("Sorry the room was not found for the following dates, please try to find " +
-                        "some other room!!!!");
+                System.out.println("Sorry! A room could not be found for the chosen dates, please try to look for " +
+                        "a different room.");
             } else {
-                System.out.println("The room is found!!! Your room number is: " + foundRoom.getCompleteRoomNumber());
+                System.out.println("Congratulations! We found a room for you :) \nYour room number is: " + foundRoom.getCompleteRoomNumber());
                 foundRooms.add(foundRoom);
             }
 
-            System.out.println("Want more rooms? press -1 for no and any other number for yes");
+            System.out.println("Would you like more rooms? Enter -1 for 'No' or enter any other number for 'Yes'");
             moreRooms = Integer.parseInt(sc.nextLine());
 
         }while(moreRooms != -1);
@@ -136,14 +136,14 @@ public class ReservationBoundary {
         Scanner sc = new Scanner(System.in);
         boolean foundReservation;
         do{
-            System.out.println("Name of the guest please:");
+            System.out.println("Please enter the name of the guest:");
             String guestName = sc.nextLine();
-            System.out.println("Passport num plz");
+            System.out.println("Please enter the passport number:");
             String guestPassportNum = sc.nextLine();
             // this will form the reservation object inside the controller class and not the boundary
             foundReservation = ReservationController.reservationFindings(guestName, guestPassportNum);
             if(!foundReservation){
-                System.out.println("Name not found, try another one");
+                System.out.println("Name not found! Please try a different name.");
             }
         } while(!foundReservation);
     }
@@ -167,21 +167,21 @@ public class ReservationBoundary {
 
     public static void checkout(){
         Scanner sc = new Scanner(System.in);
-        System.out.println("Please type the guest name you want to check out of");
+        System.out.println("Please enter the guest name for check out:");
         String guestName = sc.nextLine();
-        System.out.println("Please type your passport number");
+        System.out.println("Please enter your passport number:");
         String passport = sc.nextLine();
 
         // finding the reservation with this room number
         Reservation reservation = ReservationController.findReservation(guestName, passport);
         if(reservation == null){
-            System.out.println("Reservation not found");
+            System.out.println("Reservation not found! Please try again.");
             return;
         }
-        System.out.println("You want to only check out of one room or multiple, 1 for only one room 2 for all");
+        System.out.println("How many rooms would you like to check out of? \n1. One Room \n2. Multiple Rooms");
         int checkOutDecision = Integer.parseInt(sc.nextLine());
         if(checkOutDecision == 1){
-            System.out.print("Type your room number: ");
+            System.out.print("Please enter your room number: ");
             String completeRoomNum = sc.nextLine();
             int removeRoom = -1;
             // going through each and every rooms and break is there to avoid the recursion in case the room is found
@@ -194,7 +194,7 @@ public class ReservationBoundary {
 
             }
             if(removeRoom == -1) {
-                System.out.println("Please use the correct room num");
+                System.out.println("Invalid room number! Please try again.");
                 return;
             }
             reservation.getRooms().remove(removeRoom);
@@ -213,17 +213,17 @@ public class ReservationBoundary {
         System.out.println("The payment is " + cost);
 
         if(reservation.getGuest().getPaymentMethod() instanceof Cash){
-            System.out.println("Give cash ");
+            System.out.println("Please proceed with the cash payment: ");
             double given_money = Double.parseDouble(sc.nextLine());
             // getting the change back from person
             double change = ((Cash) reservation.getGuest().getPaymentMethod()).change(given_money);
-            System.out.printf("Here is the change %.2f, have a lovely day!!!", change);
+            System.out.printf("Here is your change %.2f. \nHave a good day!", change);
             room.setStatus(Room.RoomStatus.VACANT);
             //reservation.getRooms().remove(room);
         }
         if(reservation.getGuest().getPaymentMethod() instanceof CreditCard){
             System.out.println("Paying by credit card");
-            System.out.println("Payment done");
+            System.out.println("Payment has been processed successfully!");
             room.setStatus(Room.RoomStatus.VACANT);
             if(reservation.getRooms().size() == 0){
                 ReservationController.getReservations().remove(reservation);
@@ -237,21 +237,21 @@ public class ReservationBoundary {
         Scanner sc = new Scanner(System.in);
         double price = reservation.totalReservationCost();
         reservation.getGuest().getPaymentMethod().setTotalBill(price);
-        System.out.println("The payment is " + price);
+        System.out.println("The amount is " + price);
 
         if(reservation.getGuest().getPaymentMethod() instanceof Cash){
-            System.out.println("Give cash");
+            System.out.println("Please proceed with the cash payment:");
             double given_money = Double.parseDouble(sc.nextLine());
             double change = ((Cash) reservation.getGuest().getPaymentMethod()).change(given_money);
-            System.out.printf("Here is the change %.2f, have a lovely day!!!", change);
+            System.out.printf("Here is your change %.2f. \nHave a good day!", change);
             for(Room room: reservation.getRooms()){
                 room.setStatus(Room.RoomStatus.VACANT);
             }
             reservation.getRooms().clear();
         }
         if(reservation.getGuest().getPaymentMethod() instanceof CreditCard){
-            System.out.println("Paying by credit card");
-            System.out.println("Payment done");
+            System.out.println("Paying by credit card.");
+            System.out.println("Payment processed successfully!");
             for(Room room: reservation.getRooms()){
                 room.setStatus(Room.RoomStatus.VACANT);
             }
@@ -269,20 +269,20 @@ public class ReservationBoundary {
 
     public static void updatingReservation() throws ParseException {
         Scanner sc = new Scanner(System.in);
-        System.out.print("What is the name of the guest: ");
+        System.out.print("Please enter the name of the guest: ");
         String name = sc.nextLine();
-        System.out.print("What is your passport number: ");
+        System.out.print("Please enter the passport number: ");
         String passportNum = sc.nextLine();
 
         Reservation reservation = ReservationController.findReservation(name, passportNum);
         if(reservation == null){
-            System.out.println("The reservation is not found, please try again");
+            System.out.println("The reservation could not be found, please try again!");
             return;
         }
-        System.out.println("What would you like to change about this reservation");
-        System.out.println("1. To add room");
-        System.out.println("2. To remove room");
-        System.out.println("3. To change guest details");
+        System.out.println("What would you like to change about this reservation?");
+        System.out.println("1. Add a room");
+        System.out.println("2. Remove a room");
+        System.out.println("3. Change guest details");
         System.out.println("4. Change the number of guest staying");
         System.out.println("5. Change the fromDate");
         System.out.println("6. Change the toDate ");
@@ -312,21 +312,21 @@ public class ReservationBoundary {
                 SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
                 Date date = formatter.parse(dateString);
                 reservation.setFromDate(date);
-                System.out.println("Date changed");
+                System.out.println("Date changed successfully!");
                 break;
             case 6:
                 String dateString2 = sc.nextLine();
                 SimpleDateFormat formatter2 = new SimpleDateFormat("dd/MM/yyyy");
                 Date date2 = formatter2.parse(dateString2);
                 reservation.setToDate(date2);
-                System.out.println("Date changed");
+                System.out.println("Date changed successfully!");
                 break;
         }
     }
 
     private static void roomRemoval(Reservation reservation){
         Scanner sc = new Scanner(System.in);
-        System.out.println("What room do you want to remove");
+        System.out.println("Which room would you like to remove?");
         for(Room room: reservation.getRooms()){
             System.out.println(room.getCompleteRoomNumber());
         }
@@ -346,9 +346,9 @@ public class ReservationBoundary {
 
     public static void reservationRemoval(){
         Scanner sc = new Scanner(System.in);
-        System.out.print("Please write your name: ");
+        System.out.print("Please enter your name: ");
         String guestName = sc.nextLine();
-        System.out.println("Please write your passport number");
+        System.out.println("Please enter your passport number: ");
         String passportNum = sc.nextLine();
 
         ReservationController.reservationRemoveController(guestName, passportNum);

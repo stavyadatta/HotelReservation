@@ -36,7 +36,7 @@ public abstract class PaymentMethod {
     }
 
     public void PrintBillInvoice(){
-        System.out.printf("The total bill for the service is going to be %.2f SGD ", this.totalbill);
+        System.out.printf("The total bill for the service is %.2f SGD ", this.totalbill);
     }
 
 }

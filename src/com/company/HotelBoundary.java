@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class HotelBoundary {
     public static void enterHotel(){
         Scanner sc = new Scanner(System.in);
-        System.out.println("Do u want to check room details 1 for yes 0 for no");
+        System.out.println("Would you like to check room details? \n 1. Yes\n 0.No");
         boolean viewError;
         do {
             viewError = false;
@@ -19,28 +19,28 @@ public class HotelBoundary {
                     HotelController.printRooms();
                     return;
                 default:
-                    System.out.println("Only those 2 numbers");
+                    System.out.println("Please select option 1 or 2");
                     viewError = true;
                     break;
             }
         }while (viewError);
 
-        System.out.print("What room number do you want\nFloor:  ");
+        System.out.print("What room number would you like?\nFloor:  ");
         int floorNum = Integer.parseInt(sc.nextLine());
         while(floorNum < 0 || floorNum >= Hotel.FLOORS){
-            System.out.println("Choose again\nFloor: ");
+            System.out.println("Please choose again\nFloor: ");
             floorNum = Integer.parseInt(sc.nextLine());
         }
-        System.out.print("\nroom number: ");
+        System.out.print("\nRoom number: ");
         int roomNum = Integer.parseInt(sc.nextLine());
         while(roomNum < 0 || roomNum >= Hotel.ROOMS_ON_EACH_FLOOR){
-            System.out.println("Choose again\nroom number: ");
+            System.out.println("Please choose again\nRoom number: ");
             roomNum = Integer.parseInt(sc.nextLine());
         }
 
 
-        System.out.println("What do you want from this room number\n 1 for changing status of the room number" +
-                "\n 2 changing the weekday cost of the room number\n 3 changing the weekend cost\n");
+        System.out.println("Please select what you would like to do with this room number\n 1. Change status of the room number" +
+                "\n 2. Change the weekday cost of the room number\n 3. Change the weekend cost\n");
 
 
         boolean wrongDecision;
@@ -53,17 +53,17 @@ public class HotelBoundary {
                     HotelController.changeStatus(floorNum * Hotel.ROOMS_ON_EACH_FLOOR + roomNum);
                     break;
                 case 2:
-                    System.out.print("What Weekday cost do u want: ");
+                    System.out.print("Please enter the desired weekday cost: ");
                     double price = Double.parseDouble(sc.nextLine());
                     HotelController.changing_room_cost(price, floorNum * Hotel.ROOMS_ON_EACH_FLOOR + roomNum);
                     break;
                 case 3:
-                    System.out.println("What weekend cost u want");
+                    System.out.println("Please enter the desired weekend cost: ");
                     double weekEndPrice = Double.parseDouble(sc.nextLine());
                     HotelController.changingWeekendRoomRate(weekEndPrice, floorNum * Hotel.ROOMS_ON_EACH_FLOOR + roomNum);
                     break;
                 default:
-                    System.out.println("Only those numbers");
+                    System.out.println("Please select a valid option.");
                     wrongDecision = true;
             }
         }while(wrongDecision);
@@ -71,7 +71,7 @@ public class HotelBoundary {
 
     public static void choosingRoom(){
         Scanner sc = new Scanner(System.in);
-        System.out.println("What type of bed do u want");
+        System.out.println("Please choose a bed type");
     }
 
     public static void roomStats(){
@@ -88,7 +88,7 @@ public class HotelBoundary {
         System.out.printf("The percentage of vacant rooms %.2f\n " +
                 "The percentage of reserved rooms is %.2f\n" +
                 "The percentage of occupied rooms is %.2f\n" +
-                "The percentage of under maintenance is %.2f\n", percentageOfVacantRooms,
+                "The percentage of rooms under maintenance is %.2f\n", percentageOfVacantRooms,
                 percentageOfReservedRooms, percentageOfOccupiedRooms, percentageOfUnderMaintenance);
 
     }

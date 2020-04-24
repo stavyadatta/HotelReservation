@@ -4,40 +4,40 @@ import java.util.Scanner;
 
 public class MenuBoundary {
     public static void enterMenu(){
-        System.out.println("What do u want from menu\n 1 for Create \n 2 for update\n 3 for remove" +
-                "\n 4 for displaying menu items");
+        System.out.println("Please select an option for the menu:\n 1. Create \n 2. Update\n 3. Remove" +
+                "\n 4. Display Menu Items");
         Scanner sc = new Scanner(System.in);
 
         int decision = Integer.parseInt(sc.nextLine());
          switch (decision){
              case 1:
-                 System.out.println("Entry of new menu item name: ");
+                 System.out.println("Please enter the name of new menu item name: ");
                  String menuItemName = sc.nextLine();
-                 System.out.println("Entry for new menu item description: ");
+                 System.out.println("Pleas enter a description for the new menu item: ");
                  String menuItemDescription = sc.nextLine();
-                 System.out.print("Entry for menu item price: ");
+                 System.out.print("Please enter the price of new menu item: ");
                  double menuItemPrice = Double.parseDouble(sc.nextLine());
 
                  // creating menu item in arraylist
                  Menu.newMenuItem(menuItemName, menuItemDescription, menuItemPrice);
-                 System.out.println("name is added");
+                 System.out.println("Name has been added successfully!");
 
                  break;
 
              case 2:
                  Menu.displayMenuItems();
-                 System.out.println("What menu item u wanna update ");
+                 System.out.println("Which menu item would you like to update?");
                  Menu.updateMenuItem();
                  break;
 
              case 3:
                  Menu.displayMenuItems();
-                 System.out.println("What item u want to remove ");
+                 System.out.println("Which item would you like to remove?");
                  int idOfRemovalItem = Integer.parseInt(sc.nextLine());
                  Menu.removeMenuItem(idOfRemovalItem);
 
              case 4:
-                 System.out.println("The items in the menu are");
+                 System.out.println("The items in the menu are:");
                  Menu.displayMenuItems();
 
 

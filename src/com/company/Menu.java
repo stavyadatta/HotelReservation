@@ -33,47 +33,47 @@ public class Menu {
 
    public static void updateMenuItem(){
 	   Scanner sc = new Scanner(System.in);
-	   System.out.println("the menu item to be updated here ");
-	   System.out.println("Write the id of menu Item to be updated ");
+	   System.out.println("The menu item to be updated here ");
+	   System.out.println("Please enter the ID of the menu item to be updated ");
 	   int id = Integer.parseInt(sc.nextLine());
 
 	   for(int i = 0; i < menuItems.size(); i++){
 	   	if(id == menuItems.get(i).getId()){
-	   		System.out.println("The item is found, what do u want to change about the item\n 1 for name " +
-					"2 for description and 3 for price ");
+	   		System.out.println("The item has been found. Please select the property you would like to change:\n 1. Name " +
+					"\n2. Description \n3. Price ");
 	   		int decision = Integer.parseInt(sc.nextLine());
 	   		switch (decision){
 				case 1:
-					System.out.println("The old name was " + menuItems.get(i).getName());
-					System.out.print("\nNew name: ");
+					System.out.println("The original name of the menu item: " + menuItems.get(i).getName());
+					System.out.print("\nPlease enter a new name: ");
 					String newName = sc.nextLine();
 					menuItems.get(i).setName(newName);
 					break;
 
 				case 2:
-					System.out.println("This is the old description " + menuItems.get(i).getDescription());
-					System.out.print("\nNew description: ");
+					System.out.println("The original description of the menu item: " + menuItems.get(i).getDescription());
+					System.out.print("\nPlease enter a new description: ");
 					String newDescription = sc.nextLine();
 					menuItems.get(i).setDescription(newDescription);
-					System.out.println("Description Changed");
+					System.out.println("Description has been successfully changed!");
 					break;
 
 				case 3:
-					System.out.println("This is the old price " + menuItems.get(i).getPrice());
-					System.out.print("\nNew Price: ");
+					System.out.println("The original price of the menu item: " + menuItems.get(i).getPrice());
+					System.out.print("\nPlease enter the new price: ");
 					double newPrice = sc.nextDouble();
 					menuItems.get(i).setPrice(newPrice);
 					break;
 
 				default:
-					System.out.println("Please put valid number ");
+					System.out.println("Please enter a valid number!");
 
 			}
 			//sc.close();
 
 
 		} else{
-	   		System.out.println("Item not found");
+	   		System.out.println("Unfortunately, item could not be found.");
 		}
 	   }
 

@@ -13,7 +13,7 @@ public class Main {
             System.out.println("1. Enter a new guest's details: ");
             System.out.println("2. Update a guest's details: ");
             System.out.println("3. Create/Update rooms details (include setting status like ‘Under Maintenance");
-            System.out.println("4. Create a order for a room service");
+            System.out.println("4. Create an order for a room service");
             System.out.println("5. Create/Update/Remove room service menu items. ");
             System.out.println("7. For Reservations");
             System.out.println("8. Check out");
@@ -24,7 +24,7 @@ public class Main {
             System.out.println("13. Reservation Printing");
 
 
-            System.out.print("Enter your choice: ");
+            System.out.print("Please enter your choice: ");
             choice = Integer.parseInt(sc.nextLine());
 
 
@@ -37,7 +37,7 @@ public class Main {
                     GuestBoundary.enterGuest();
                     break;
                 case 2:
-                    System.out.println("Create/Update/Remove/Print reservation");
+                    System.out.println("Create/Update/Remove/Print Reservation");
                     break;
                 case 3:
                     System.out.println("Create/Update rooms details (include setting status like ‘Under Maintenance");

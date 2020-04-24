@@ -15,13 +15,13 @@ public class RoomServiceBoundary {
         double price = 0.0;
         RoomService roomService = new RoomService();
         do{
-            System.out.println("Select the ids of the items or select -1 to finalize  ");
+            System.out.println("Please select the IDs of the items, or enter '-1' to finalize.");
             id = Integer.parseInt(sc.nextLine());
             if(id == -1){
                 break;
             }
             if(id < -1 || id >= Menu.getMenuItems().size()){
-                System.out.println("Please choose an appropriate number");
+                System.out.println("Please choose a valid number!");
                 continue;
             }
             // adding the selected menu item into the array list of the room service object
@@ -37,7 +37,7 @@ public class RoomServiceBoundary {
         boolean correctRoomStatus;
 
         do {
-            System.out.println("Your complete Room number Please");
+            System.out.println("Please enter your complete room number:");
             String completeRoomNum = sc.nextLine();
             correctRoomStatus = RoomServiceController.roomServiceModifier(roomService, price, completeRoomNum);
         } while (!correctRoomStatus);
@@ -47,6 +47,6 @@ public class RoomServiceBoundary {
      * being accessed by the controller class
      */
     public static void incorrectRoomNum(){
-        System.out.println("Plz output a proper room num or room hasn't been checked in yet");
+        System.out.println("Sorry! The room number is incorrect, or the room has not been checked in yet.");
     }
 }

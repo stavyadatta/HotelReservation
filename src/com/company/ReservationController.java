@@ -123,7 +123,7 @@ public class ReservationController {
                 return reservation;
             }
         }
-        System.out.println("Room not reserved in, please enter correct room number");
+        System.out.println("Room not reserved in, please enter correct room number.");
         return null;
     }
     public static void changingGuestNum(Reservation reservation, int numOfGuests){
